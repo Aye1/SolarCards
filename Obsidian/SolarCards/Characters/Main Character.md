@@ -1,0 +1,4 @@
+- Name: Up to the player?
+- Title: Detective/Inspector/Other?
+- Faction/Family: [[The Police]]
+- Connections:

@@ -1,0 +1,1 @@
+Draws n card, and the player needs to discard m cards from the ones drawn, not from the whole pool, contrary to [[Draw]] then [[Discard]]

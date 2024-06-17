@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://bcxd5yqg6ugt7"]
+
+[ext_resource type="Script" path="res://Scripts/grid_card_displayer.gd" id="1_w4xjc"]
+[ext_resource type="Texture2D" uid="uid://csotggrk50psr" path="res://Images/Card.png" id="2_y1wrd"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1m0m0"]
+size = Vector2(812, 458)
+
+[node name="LocationBoard" type="Area2D"]
+script = ExtResource("1_w4xjc")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(2, -3)
+shape = SubResource("RectangleShape2D_1m0m0")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(3.272, 1.32571)
+texture = ExtResource("2_y1wrd")

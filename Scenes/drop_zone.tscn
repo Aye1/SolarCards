@@ -1,0 +1,30 @@
+[gd_scene load_steps=4 format=3 uid="uid://jy0sd4wj60ea"]
+
+[ext_resource type="Script" path="res://Scripts/drop_zone.gd" id="1_w8ghs"]
+[ext_resource type="Texture2D" uid="uid://csotggrk50psr" path="res://Images/Card.png" id="2_4gujw"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cl6un"]
+size = Vector2(506.5, 385.5)
+
+[node name="DropZone" type="Area2D"]
+script = ExtResource("1_w8ghs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_cl6un")
+debug_color = Color(0, 0.6, 0.701961, 0.909804)
+
+[node name="Sprite2D" type="Sprite2D" parent="CollisionShape2D"]
+position = Vector2(0, 0.499987)
+scale = Vector2(1.992, 1.07714)
+texture = ExtResource("2_4gujw")
+
+[node name="Label" type="Label" parent="."]
+offset_left = -228.0
+offset_top = -175.0
+offset_right = -93.0
+offset_bottom = -126.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "DROP ZONE"
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="area_exited" from="." to="." method="_on_area_exited"]

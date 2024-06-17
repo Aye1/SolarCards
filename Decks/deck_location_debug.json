@@ -1,0 +1,25 @@
+{
+	"name": "Debug deck",
+	"type": "location",
+	"cards": [
+		"test_character_card.json",
+		"test_character_card.json",
+		"test_character_card.json",
+		"test_character_card.json",
+		"test_character_card.json",
+		"test_character_card.json",
+		"test_character_card.json",
+		"test_character_card.json",
+		"test_character_card.json",
+		"test_character_card.json",
+		"test_character_card.json",
+		"test_character_card.json",
+		"test_character_card.json",
+		"test_character_card.json",
+		"test_character_card.json",
+		"test_character_card.json",
+		"test_character_card.json",
+		"test_character_card.json",
+		"test_character_card.json"
+	]
+}

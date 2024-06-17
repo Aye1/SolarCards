@@ -1,0 +1,13 @@
+{
+	"type": "action",
+	"title": "Investigate",
+	"description": "Draw 2 cards from the location pile",
+	"cost": 1,
+	"effects": [
+		{
+			"type": "draw",
+			"value": 2,
+			"target": "location"
+		}
+	]
+}

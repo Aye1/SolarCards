@@ -1,0 +1,44 @@
+[gd_scene load_steps=5 format=3 uid="uid://dxgjw3e71jcpc"]
+
+[ext_resource type="Script" path="res://Scripts/card_selector.gd" id="1_1dix8"]
+[ext_resource type="Texture2D" uid="uid://balutknswb60y" path="res://Images/black_background_1920_1080.png" id="1_rsx5a"]
+[ext_resource type="Script" path="res://Scripts/grid_card_displayer.gd" id="3_rfw4m"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_uk8vr"]
+size = Vector2(1219, 415)
+
+[node name="CardSelector" type="Node2D"]
+z_index = 50
+script = ExtResource("1_1dix8")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0.470588)
+texture = ExtResource("1_rsx5a")
+
+[node name="Label" type="Label" parent="."]
+offset_left = -395.0
+offset_top = -317.0
+offset_right = 370.0
+offset_bottom = -227.0
+theme_override_font_sizes/font_size = 55
+text = "There's something to choose"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AcceptButton" type="Button" parent="."]
+offset_left = 693.0
+offset_top = 379.0
+offset_right = 789.0
+offset_bottom = 424.0
+scale = Vector2(1, 0.991603)
+theme_override_font_sizes/font_size = 27
+text = "Accept"
+
+[node name="CardDisplayer" type="Area2D" parent="."]
+script = ExtResource("3_rfw4m")
+max_cols = 10
+max_rows = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CardDisplayer"]
+position = Vector2(-0.5, 52.5)
+shape = SubResource("RectangleShape2D_uk8vr")

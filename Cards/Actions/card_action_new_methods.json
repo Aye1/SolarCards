@@ -1,0 +1,18 @@
+{
+	"type": "action",
+	"title": "New methods",
+	"description": "Draw 2 cards from the actions pile, then discard 1",
+	"cost": 1,
+	"effects": [
+		{
+			"type": "draw",
+			"value": 2,
+			"target": "actions"
+		},
+		{
+			"type": "discard",
+			"value": 1,
+			"target": "actions"
+		}
+	]
+}

@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://cnp5s0shgfmai"]
+
+[ext_resource type="Texture2D" uid="uid://cuweu46fgeftb" path="res://Images/tmp_background_rounded.png" id="1_jalf6"]
+
+[node name="Background" type="Sprite2D"]
+texture = ExtResource("1_jalf6")
+region_enabled = true
+region_rect = Rect2(0, 0, 1920, 1080)

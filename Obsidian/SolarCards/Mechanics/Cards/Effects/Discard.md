@@ -1,0 +1,1 @@
+Discard n cards from a specific hand/pile

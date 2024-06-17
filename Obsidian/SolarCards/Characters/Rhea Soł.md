@@ -1,0 +1,5 @@
+- Name: Rhea Soł
+- Title: Former Empress?
+- Faction/Family: [[Soł]]
+- Connections:
+	- Mother of [[Aurora Soł]]

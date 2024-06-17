@@ -1,0 +1,10 @@
+- Ersa
+- Io
+- Amalthea
+- Titan
+- Deimos
+- Iris
+- Sao
+- Malina
+- Ama / Amaterasu
+- Janus

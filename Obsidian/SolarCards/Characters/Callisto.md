@@ -1,0 +1,5 @@
+- Name: Callisto
+- Title: Companion
+- Faction/Family: [[Soł]]
+- Connections:
+	- [[Aurora Soł]] 1st companion & secret lover?

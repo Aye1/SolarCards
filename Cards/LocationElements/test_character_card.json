@@ -1,0 +1,13 @@
+{
+	"type": "character",
+	"title": "Test Character",
+	"description": "This is a PNJ, basically",
+	"cost": 0,
+	"effects": [],
+	"dialogs":
+		[
+			{
+				"text": "Test dialog"
+			}
+		]
+}

@@ -1,0 +1,18 @@
+{
+	"type": "action",
+	"title": "Test Card",
+	"description": "This is a test card loaded from a JSON file that draws 1 card and prints a debug text",
+	"cost": 0,
+	"effects": [
+		{
+			"type": "draw",
+			"value": 1,
+			"target": "actions"
+		},
+		{
+			"type": "debug_print",
+			"value": "Test action succeded",
+			"target": ""
+		}
+	]
+}

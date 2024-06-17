@@ -1,0 +1,64 @@
+[gd_scene load_steps=10 format=3 uid="uid://cg5ldno0vqri0"]
+
+[ext_resource type="PackedScene" uid="uid://cnp5s0shgfmai" path="res://Scenes/background.tscn" id="1_3pxb0"]
+[ext_resource type="PackedScene" uid="uid://jy0sd4wj60ea" path="res://Scenes/drop_zone.tscn" id="3_g27dn"]
+[ext_resource type="PackedScene" uid="uid://ccr74mhxgrvdf" path="res://Scenes/discard_pile.tscn" id="4_50tn1"]
+[ext_resource type="Script" path="res://Scripts/discard_pile.gd" id="5_6q0u0"]
+[ext_resource type="Script" path="res://Scripts/hand.gd" id="6_1iehq"]
+[ext_resource type="Texture2D" uid="uid://csotggrk50psr" path="res://Images/Card.png" id="6_64bjw"]
+[ext_resource type="PackedScene" uid="uid://bjeitisee5wbb" path="res://Scenes/deck.tscn" id="7_hm88m"]
+[ext_resource type="PackedScene" uid="uid://bcxd5yqg6ugt7" path="res://Scenes/location_board.tscn" id="8_6fajb"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4qefg"]
+size = Vector2(1100, 376)
+
+[node name="MainNode" type="Node2D"]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="Background" parent="." instance=ExtResource("1_3pxb0")]
+
+[node name="Button" type="Button" parent="."]
+offset_left = -909.0
+offset_top = -110.0
+offset_right = -791.0
+offset_bottom = -24.0
+text = "Draw Card"
+
+[node name="DropZone" parent="." instance=ExtResource("3_g27dn")]
+position = Vector2(671, -314)
+
+[node name="DiscardPile" parent="." instance=ExtResource("4_50tn1")]
+position = Vector2(777, 288)
+script = ExtResource("5_6q0u0")
+
+[node name="Hand" type="Area2D" parent="."]
+position = Vector2(-53, 273)
+script = ExtResource("6_1iehq")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hand"]
+position = Vector2(0, 39)
+shape = SubResource("RectangleShape2D_4qefg")
+
+[node name="Sprite2D" type="Sprite2D" parent="Hand"]
+position = Vector2(0, 37.2504)
+scale = Vector2(4.38, 1.08143)
+texture = ExtResource("6_64bjw")
+
+[node name="Label" type="Label" parent="Hand"]
+offset_left = -509.0
+offset_top = -129.0
+offset_right = -462.0
+offset_bottom = -106.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "HAND"
+metadata/_edit_use_anchors_ = true
+
+[node name="ActionDeck" parent="." instance=ExtResource("7_hm88m")]
+position = Vector2(-778, 275)
+
+[node name="LocationDeck" parent="." instance=ExtResource("7_hm88m")]
+position = Vector2(-775, -344)
+
+[node name="LocationBoard" parent="." instance=ExtResource("8_6fajb")]
+position = Vector2(-201, -288)

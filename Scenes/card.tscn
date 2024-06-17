@@ -1,0 +1,60 @@
+[gd_scene load_steps=6 format=3 uid="uid://cd4583kr0prch"]
+
+[ext_resource type="Script" path="res://Scripts/card.gd" id="1_rgp2s"]
+[ext_resource type="Script" path="res://Scripts/draggable.gd" id="3_ohjjq"]
+[ext_resource type="Texture2D" uid="uid://crvh3v3mrhq7h" path="res://Images/Card2.png" id="3_tfk1s"]
+[ext_resource type="Texture2D" uid="uid://fq8t0fwjwla2" path="res://Images/card_highlight.png" id="4_xss7o"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vhjjl"]
+size = Vector2(144, 209)
+
+[node name="Card" type="Node2D"]
+position = Vector2(-202, -203)
+script = ExtResource("1_rgp2s")
+
+[node name="DragArea2D" type="Area2D" parent="."]
+script = ExtResource("3_ohjjq")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DragArea2D"]
+position = Vector2(-1.52588e-05, -0.500015)
+shape = SubResource("RectangleShape2D_vhjjl")
+
+[node name="CardBackground" type="Sprite2D" parent="."]
+scale = Vector2(0.6, 0.6)
+texture = ExtResource("3_tfk1s")
+
+[node name="NameLabel" type="Label" parent="CardBackground"]
+offset_left = -105.0
+offset_top = -162.0
+offset_right = 54.0
+offset_bottom = -137.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "CARD NAME"
+vertical_alignment = 1
+
+[node name="DescRichTextLabel" type="RichTextLabel" parent="CardBackground"]
+offset_left = -112.0
+offset_top = 19.0
+offset_right = 111.0
+offset_bottom = 168.0
+mouse_filter = 2
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+text = "CARD DESCRIPTION"
+
+[node name="CostLabel" type="Label" parent="CardBackground"]
+offset_left = 63.0
+offset_top = -165.0
+offset_right = 89.0
+offset_bottom = -134.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 22
+text = "66"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="HighlightSprite" type="Sprite2D" parent="."]
+scale = Vector2(0.68, 0.662857)
+texture = ExtResource("4_xss7o")
+
+[connection signal="mouse_off" from="DragArea2D" to="." method="_on_mouse_off"]
+[connection signal="mouse_on" from="DragArea2D" to="." method="_on_mouse_on"]

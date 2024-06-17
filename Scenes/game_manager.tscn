@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://pqkvsp4c160p"]
+
+[ext_resource type="Script" path="res://Scripts/game_manager.gd" id="1_elaio"]
+
+[node name="GameManager" type="Node"]
+script = ExtResource("1_elaio")

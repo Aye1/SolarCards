@@ -1,0 +1,4 @@
+- Name:
+- Title: Empress
+- Faction/Family: [[The Band]]
+- Connections:

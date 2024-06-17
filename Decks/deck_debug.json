@@ -1,0 +1,22 @@
+{
+	"name": "Debug deck",
+	"type": "actions",
+	"cards": [
+		"card_action_investigate.json",
+		"card_action_new_methods.json",
+		"card_action_investigate.json",
+		"card_action_new_methods.json",
+		"card_action_investigate.json",
+		"card_action_new_methods.json",
+		"card_action_investigate.json",
+		"card_action_investigate.json",
+		"card_action_investigate.json",
+		"card_action_investigate.json",
+		"card_action_investigate.json",
+		"card_action_investigate.json",
+		"card_action_investigate.json",
+		"card_action_investigate.json",
+		"card_action_investigate.json",
+		"card_action_new_methods.json"
+	]
+}

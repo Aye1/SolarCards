@@ -1,0 +1,5 @@
+- Name: Aurora Soł
+- Title: Empress
+- Faction/Family: [[Soł]]
+- Connections:
+	- Daughter of [[Rhea Soł]]
