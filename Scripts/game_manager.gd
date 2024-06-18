@@ -80,6 +80,8 @@ func _process_card_effect(effect):
 			print(effect.value)
 		"discard":
 			start_discard_selection(effect.value, effect.target)
+		"draw_discard":
+			draw_and_discard(effect.value, effect.value2, effect.target)
 		_:
 			printerr("Unknown card effect encountered " + effect.type)
 	
@@ -118,7 +120,7 @@ func _get_target_displayer(key):
 func start_discard_selection(number, pile):
 	temp_selection_pile = pile
 	var selector = card_selector.instantiate()
-	var displayer = _get_target_displayer(pile)
+	var displayer = _get_target_displayer(pile) #TODO: selector should probably be a reused object
 	var cards = displayer.cards.duplicate()
 	displayer.clear()
 	selector.set_selectable_cards(cards)
@@ -136,4 +138,21 @@ func _on_selection_finished(selected_cards, all_cards):
 	displayer.add_cards(cards)
 	temp_selector.queue_free()
 	
-
+# TODO: probably need to refactor this with the actual draw_card method
+func draw_and_discard(draw_number, discard_number, pile):
+	var cards = []
+	temp_selection_pile = pile
+	var deck = _get_deck(pile)
+	var target = _get_target_displayer(pile)
+	for i in range(0, draw_number):
+		var card_path = deck.draw_card()
+		if card_path != null:
+			var new_card = create_card(card_path, target)
+			cards.append(new_card)
+	var selector = card_selector.instantiate()
+	selector.set_selectable_cards(cards)
+	selector.target_count = discard_number
+	selector.selection_done.connect(_on_selection_finished)
+	add_child(selector)
+	temp_selector = selector
+	
