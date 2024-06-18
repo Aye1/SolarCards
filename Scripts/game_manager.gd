@@ -54,7 +54,7 @@ func _init_game():
 	draw_cards(3, "actions")
 
 func _on_draggable_dropped(draggable):
-	hand.reorder_cards()
+	#hand.reorder_cards()
 	location_board.reorder_cards()
 
 

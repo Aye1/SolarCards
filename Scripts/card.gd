@@ -14,6 +14,7 @@ var highlight_sprite
 var draggable
 var effects = []
 var is_selected = false
+var is_dragged = false
 
 const scale_up_vector = Vector2(1.1,1.1)
 const base_scale = Vector2.ONE
@@ -41,9 +42,14 @@ func _init_texts():
 	
 func _connect_signals():
 	draggable.selected.connect(_on_draggable_selected)
+	draggable.drag_started.connect(_on_drag.bind(true))
+	draggable.drag_stopped.connect(_on_drag.bind(false))
 
 func _on_draggable_selected():
 	selected.emit()
+	
+func _on_drag(dragged):
+	is_dragged = dragged
 	
 func _handle_hovered():
 	if is_hovered():
