@@ -10,7 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://bcxd5yqg6ugt7" path="res://Scenes/location_board.tscn" id="8_6fajb"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4qefg"]
-size = Vector2(1100, 376)
+size = Vector2(1100, 279)
 
 [node name="MainNode" type="Node2D"]
 
@@ -33,16 +33,15 @@ position = Vector2(777, 288)
 script = ExtResource("5_6q0u0")
 
 [node name="Hand" type="Area2D" parent="."]
-position = Vector2(-53, 273)
+position = Vector2(-53, 400)
 script = ExtResource("6_1iehq")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hand"]
-position = Vector2(0, 39)
 shape = SubResource("RectangleShape2D_4qefg")
 
 [node name="Sprite2D" type="Sprite2D" parent="Hand"]
-position = Vector2(0, 37.2504)
-scale = Vector2(4.38, 1.08143)
+visible = false
+scale = Vector2(4.38, 0.797143)
 texture = ExtResource("6_64bjw")
 
 [node name="Label" type="Label" parent="Hand"]
