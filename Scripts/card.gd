@@ -29,18 +29,13 @@ func _ready():
 	
 func _process(delta):
 	highlight_sprite.set_visible(is_selected)
+	scale = scale_up_vector if $DragArea2D.is_current_hover else base_scale
 	
 func _init_texts():
 	name_label.text = title
 	desc_label.text = desc
 	cost_label.text = str(cost)
 
-func _on_mouse_on():
-	scale = scale_up_vector
-	
-func _on_mouse_off():
-	scale = base_scale
-	
 func _on_draggable_selected():
 	selected.emit()
 	

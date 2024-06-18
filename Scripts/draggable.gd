@@ -3,6 +3,7 @@ class_name Draggable
 
 var mouse_is_on = false
 var is_dragged = false
+var is_current_hover = false
 var drag_local_point
 var can_be_dragged = true
 var current_drop_zone
