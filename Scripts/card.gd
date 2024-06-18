@@ -11,6 +11,7 @@ var name_label
 var desc_label
 var cost_label
 var highlight_sprite
+var draggable
 var effects = []
 var is_selected = false
 
@@ -24,20 +25,31 @@ func _ready():
 	desc_label = $CardBackground/DescRichTextLabel
 	cost_label = $CardBackground/CostLabel
 	highlight_sprite = $HighlightSprite
+	draggable = $DragArea2D
 	_init_texts()
-	$DragArea2D.selected.connect(_on_draggable_selected)
+	_connect_signals()
 	
 func _process(delta):
 	highlight_sprite.set_visible(is_selected)
-	scale = scale_up_vector if $DragArea2D.is_current_hover else base_scale
+
+	_handle_hovered()
 	
 func _init_texts():
 	name_label.text = title
 	desc_label.text = desc
 	cost_label.text = str(cost)
+	
+func _connect_signals():
+	draggable.selected.connect(_on_draggable_selected)
 
 func _on_draggable_selected():
 	selected.emit()
+	
+func _handle_hovered():
+	if is_hovered():
+		scale = scale_up_vector
+	else:
+		scale = base_scale
 	
 func load_json(path):
 	var content = FileAccess.get_file_as_string(path)
@@ -50,4 +62,7 @@ func load_json(path):
 			cost = content_dict["cost"]
 			for effect in content_dict["effects"]:
 				effects.append(CardEffect.new(effect))
+				
+func is_hovered() -> bool:
+	return draggable.is_current_hover
 
