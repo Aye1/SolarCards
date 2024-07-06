@@ -14,7 +14,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Mechanics/Aspects/Earning Aspects Points.md",
+                "file": "Locations/Rising Sternflod.md",
                 "mode": "source",
                 "source": false
               }
@@ -31,8 +31,12 @@
             "id": "1e2f3991a82a7247",
             "type": "leaf",
             "state": {
-              "type": "graph",
-              "state": {}
+              "type": "markdown",
+              "state": {
+                "file": "Characters/Aurora Soł.md",
+                "mode": "source",
+                "source": false
+              }
             }
           }
         ]
@@ -101,7 +105,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Mechanics/Aspects/Earning Aspects Points.md",
+                "file": "Locations/Rising Sternflod.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -118,7 +122,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Mechanics/Aspects/Earning Aspects Points.md",
+                "file": "Locations/Rising Sternflod.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -141,7 +145,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Mechanics/Aspects/Earning Aspects Points.md"
+                "file": "Locations/Rising Sternflod.md"
               }
             }
           }
@@ -165,41 +169,41 @@
   },
   "active": "ed88ea85396f7145",
   "lastOpenFiles": [
+    "Locations/Falling Sternflod.md",
+    "Locations/Solinskap.md",
+    "Investigations/Test Investigation.md",
+    "Factions/The Resistance.md",
+    "Factions/The Police.md",
+    "Factions/The Band.md",
+    "Factions/Soł.md",
+    "Factions/Łuna.md",
+    "Endings/Become the Emperor·ress.md",
+    "Characters/Rhea Soł.md",
     "Characters/Aurora Soł.md",
+    "Characters/Band frontliner.md",
+    "Characters/Callisto.md",
+    "Characters/Main Character.md",
+    "Characters/Pasiphae Łuna.md",
+    "Lore/Éos.md",
+    "Untitled.md",
+    "Lore",
+    "Locations/Rising Sternflod.md",
+    "Story/Structure.md",
+    "Story/Act 2.md",
+    "Story/Act 3.md",
+    "Story/Act 1.md",
+    "Mechanics/Aspects/Earning Aspects Points.md",
+    "Story",
     "Mechanics/Cards/Effects/Discard.md",
     "Mechanics/Cards/Effects/Draw & Discard.md",
     "Mechanics/Cards/Effects/Draw.md",
-    "Mechanics/Cards/Effects/Interact.md",
-    "Mechanics/Aspects/Earning Aspects Points.md",
-    "Endings/Become the Emperor·ress.md",
     "Endings",
     "Mechanics/Cards/Effects",
     "Mechanics/Cards",
-    "Characters/Rhea Soł.md",
-    "Characters/Callisto.md",
-    "Characters/Main Character.md",
-    "Factions/The Police.md",
-    "Characters/Main C.md",
-    "zDatabase/Names.md",
-    "Characters/Janus.md",
-    "zDatabase/Special characters.md",
     "zDatabase",
-    "Factions/Soł.md",
-    "Characters/Pasiphae Łuna.md",
-    "Mechanics/Tarot Cards.md",
-    "Mechanics/Aspects/Technology.md",
-    "Mechanics/Aspects/Influence.md",
-    "Mechanics/Aspects/Esoterism.md",
-    "Mechanics/Powers.md",
-    "Mechanics/Aspects.md",
     "Mechanics/Aspects",
-    "Characters/Band frontliner.md",
-    "Factions/Łuna.md",
-    "Templates/Character.md",
-    "Templates",
+    "zTemplates",
     "Factions",
-    "Investigations",
-    "Mechanics",
-    "Locations"
+    "Investigations"
   ]
 }

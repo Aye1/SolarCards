@@ -1,0 +1,1 @@
+Crowning ceremony of the new Empress
