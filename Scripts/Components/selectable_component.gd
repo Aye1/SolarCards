@@ -9,7 +9,6 @@ signal deselected
 @export var collision_object:CollisionObject2D
 
 var can_be_selected:bool = false : set = _toggle_selectability
-
 var is_selected:bool = false
 
 func _ready():

@@ -27,9 +27,6 @@ func _ready():
 	_init_texts()
 	_connect_signals()
 	
-func _process(delta):
-	_handle_hovered()
-	
 func _init_texts():
 	name_label.text = title
 	desc_label.text = desc

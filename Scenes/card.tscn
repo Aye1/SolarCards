@@ -64,6 +64,8 @@ collision_object = NodePath("../DragArea2D")
 
 [node name="MouseHoverComponent" parent="." node_paths=PackedStringArray("collision_object") instance=ExtResource("6_1k15p")]
 collision_object = NodePath("../DragArea2D")
+should_scale_on_hover = true
+scale_ratio = 1.362
 
 [node name="DraggableComponent" parent="." node_paths=PackedStringArray("mouse_hover_component", "collision_object") instance=ExtResource("6_ypiux")]
 mouse_hover_component = NodePath("../MouseHoverComponent")

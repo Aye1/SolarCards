@@ -1,17 +1,14 @@
 extends Node2D
 class_name DraggableComponent
 
-#signal mouse_on
-#signal mouse_off
 signal drag_started
 signal drag_stopped
 
 @export var mouse_hover_component:MouseHoverComponent
 @export var collision_object:CollisionObject2D
 
-var mouse_is_on = false
 var is_dragged = false
-var is_current_hover = false
+var is_current_hover = false : set = _set_is_current_hover
 var drag_local_point
 var can_be_dragged = true
 var current_drop_zone
@@ -29,14 +26,6 @@ func _connect_signals():
 		
 func _physics_process(delta):
 	_handle_drag()
-
-#func _mouse_enter():
-#	mouse_is_on = true
-#	mouse_on.emit()
-
-#func _mouse_exit():
-#	mouse_is_on = false
-#	mouse_off.emit()
 	
 func _input_event(viewport, event, shape_idx):
 	if event is InputEventMouseButton:
@@ -76,6 +65,10 @@ func _area_exited(area:Area2D):
 func _check_drop_zone():
 	if current_drop_zone != null:
 		current_drop_zone.signal_draggable_dropped(self)
+		
+func _set_is_current_hover(value:bool):
+	is_current_hover = value
+	mouse_hover_component.can_scale = is_current_hover
 
 func set_can_be_grabbed(can_be):
 	can_be_dragged = can_be
