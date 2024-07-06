@@ -28,7 +28,7 @@ func _ready():
 	_connect_signals()
 	
 func _process(delta):
-	pass
+	_handle_hovered()
 	
 func _init_texts():
 	name_label.text = title
@@ -38,11 +38,11 @@ func _init_texts():
 func _connect_signals():
 	pass
 	
-#func _handle_hovered():
-#	if is_hovered():
-#		scale = scale_up_vector
-#	else:
-#		scale = base_scale
+func _handle_hovered():
+	if is_hovered():
+		scale = scale_up_vector
+	else:
+		scale = base_scale
 	
 func load_json(path):
 	var content = FileAccess.get_file_as_string(path)
