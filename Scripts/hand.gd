@@ -21,7 +21,7 @@ func reorder_cards():
 	var curr = 0
 	for card in cards:
 		# As we always reorder cards, we don't want to move the currently dragged one until it's released
-		if !card.is_dragged:			
+		if !card.draggable.is_dragged:			
 			@warning_ignore("integer_division")
 			var local_normalized_pos = (curr - count/2) / float(count)
 			var localpos = Vector2((curr - offset) * spacing, abs(local_normalized_pos * hand_size_ratio * card_max_y_offset))

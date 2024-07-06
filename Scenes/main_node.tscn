@@ -10,7 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://bcxd5yqg6ugt7" path="res://Scenes/location_board.tscn" id="8_6fajb"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4qefg"]
-size = Vector2(1100, 279)
+size = Vector2(1100, 246.5)
 
 [node name="MainNode" type="Node2D"]
 
@@ -26,10 +26,25 @@ offset_bottom = -24.0
 text = "Draw Card"
 
 [node name="DropZone" parent="." instance=ExtResource("3_g27dn")]
-position = Vector2(671, -314)
+position = Vector2(508, -228)
+
+[node name="CollisionShape2D" parent="DropZone" index="0"]
+position = Vector2(418.375, -70.5)
+
+[node name="Sprite2D" parent="DropZone/CollisionShape2D" index="0"]
+position = Vector2(0.624985, -1.50001)
+scale = Vector2(5.344, 0.502857)
+
+[node name="Label" parent="DropZone/CollisionShape2D" index="1"]
+offset_left = -641.375
+offset_top = -74.5
+offset_right = -506.375
+offset_bottom = -25.5
+metadata/_edit_use_anchors_ = true
 
 [node name="DiscardPile" parent="." instance=ExtResource("4_50tn1")]
-position = Vector2(777, 288)
+position = Vector2(838, 388)
+scale = Vector2(0.6, 0.6)
 script = ExtResource("5_6q0u0")
 
 [node name="Hand" type="Area2D" parent="."]
@@ -37,6 +52,7 @@ position = Vector2(-53, 400)
 script = ExtResource("6_1iehq")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hand"]
+position = Vector2(-1, 33)
 shape = SubResource("RectangleShape2D_4qefg")
 
 [node name="Sprite2D" type="Sprite2D" parent="Hand"]
@@ -45,19 +61,23 @@ scale = Vector2(4.38, 0.797143)
 texture = ExtResource("6_64bjw")
 
 [node name="Label" type="Label" parent="Hand"]
-offset_left = -509.0
-offset_top = -129.0
-offset_right = -462.0
-offset_bottom = -106.0
+visible = false
+offset_left = -529.0
+offset_top = -79.0
+offset_right = -482.0
+offset_bottom = -56.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 text = "HAND"
 metadata/_edit_use_anchors_ = true
 
 [node name="ActionDeck" parent="." instance=ExtResource("7_hm88m")]
-position = Vector2(-778, 275)
+position = Vector2(-798, 394)
+scale = Vector2(0.6, 0.6)
 
 [node name="LocationDeck" parent="." instance=ExtResource("7_hm88m")]
 position = Vector2(-775, -344)
 
 [node name="LocationBoard" parent="." instance=ExtResource("8_6fajb")]
 position = Vector2(-201, -288)
+
+[editable path="DropZone"]

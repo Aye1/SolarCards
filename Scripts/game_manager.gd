@@ -62,7 +62,7 @@ func create_card(path, board) -> Card:
 	var new_card = card_template.instantiate()
 	new_card.load_json(path)
 	board.add_child(new_card)
-	drag_manager.register_draggable(new_card.get_node("DragArea2D"))
+	drag_manager.register_draggable(new_card.draggable)
 	return new_card
 
 

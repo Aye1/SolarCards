@@ -40,19 +40,37 @@ func _can_accept() -> bool:
 	
 func _connect_cards() -> void:
 	for card in selectable_cards:
-		card.selected.connect(_on_card_selected.bind(card))
-		
-func _on_card_selected(card):
+		card.selectable.can_be_selected = true
+		card.selectable.selected.connect(_on_card_selected.bind(card))
+		card.selectable.deselected.connect(_on_card_deselected.bind(card))
+		card.draggable.can_be_dragged = false
+	
+func _release_cards():
+	for card in selectable_cards:
+		card.selectable.can_be_selected = false
+		card.selectable.selected.disconnect(_on_card_selected.bind(card))
+		card.selectable.deselected.disconnect(_on_card_deselected.bind(card))
+		card.draggable.can_be_dragged = true
+
+func _on_card_deselected(card):
 	if card in selected_cards:
 		selected_cards.erase(card)
-		card.is_selected = false
-	else:
-		if selected_cards.size() < target_count:
-			selected_cards.append(card)
-			card.is_selected = true
+		#card.selectable.deselect()
+		_update_selectability()
+
+func _on_card_selected(card):
+	if selected_cards.size() < target_count:
+		selected_cards.append(card)
+		#card.selectable.select()
+		_update_selectability()
+
+func _update_selectability():
+	for card in selectable_cards:
+		card.selectable.can_be_selected = !_can_accept()
 			
 func _on_accept_button_pressed():
+	_release_cards()
 	selection_done.emit(selected_cards, selectable_cards)
-	
+
 func set_selectable_cards(cards):
 	selectable_cards = cards
