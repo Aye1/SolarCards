@@ -1,8 +1,6 @@
 extends Node2D
 class_name Card
 
-signal selected
-
 var title:String = "TMP_Investigate"
 var desc:String = "TMP_Draw 2 cards"
 var cost:int
@@ -14,8 +12,6 @@ var highlight_sprite
 var draggable
 var selectable
 var effects = []
-#var is_selected = false
-var is_dragged = false
 
 const scale_up_vector = Vector2(1.1,1.1)
 const base_scale = Vector2.ONE
@@ -26,7 +22,6 @@ func _ready():
 	name_label = $CardBackground/NameLabel
 	desc_label = $CardBackground/DescRichTextLabel
 	cost_label = $CardBackground/CostLabel
-	#highlight_sprite = $HighlightSprite
 	draggable = $DraggableComponent
 	selectable = $SelectableComponent
 	_init_texts()
@@ -34,9 +29,6 @@ func _ready():
 	
 func _process(delta):
 	pass
-	#highlight_sprite.set_visible(is_selected)
-
-#	_handle_hovered()
 	
 func _init_texts():
 	name_label.text = title
@@ -45,15 +37,6 @@ func _init_texts():
 	
 func _connect_signals():
 	pass
-	#draggable.selected.connect(_on_draggable_selected)
-	#draggable.drag_started.connect(_on_drag.bind(true))
-	#draggable.drag_stopped.connect(_on_drag.bind(false))
-
-#func _on_draggable_selected():
-#	selected.emit()
-	
-#func _on_drag(dragged):
-#	is_dragged = dragged
 	
 #func _handle_hovered():
 #	if is_hovered():
@@ -74,6 +57,5 @@ func load_json(path):
 				effects.append(CardEffect.new(effect))
 				
 func is_hovered() -> bool:
-	return false
-#	return draggable.is_current_hover
+	return draggable.is_current_hover
 
