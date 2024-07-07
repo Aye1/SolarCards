@@ -35,10 +35,11 @@ theme_override_font_sizes/font_size = 27
 text = "Accept"
 
 [node name="CardDisplayer" type="Area2D" parent="."]
+position = Vector2(0, 100)
 script = ExtResource("3_rfw4m")
 max_cols = 10
 max_rows = 1
+card_spacing = "Expanded"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CardDisplayer"]
-position = Vector2(-0.5, 52.5)
 shape = SubResource("RectangleShape2D_uk8vr")

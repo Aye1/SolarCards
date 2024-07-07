@@ -3,19 +3,25 @@ class_name CardSelector
 
 signal selection_done(selected_cards, all_cards)
 
+enum CardSelectionType { DISCARD = 0 }
+
 var target_count = 10000
+var selection_type = CardSelectionType.DISCARD : set = _set_selection_type
 var selectable_cards = []
 var selected_cards = []
 
 var accept_button:Button
+var prompt_label:Label
 var displayer:CardDisplayer
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	accept_button = $AcceptButton
 	displayer = $CardDisplayer
+	prompt_label = $Label
 	displayer.add_cards(selectable_cards)
 	_connect_cards()
+	_update_prompt_label()
 	accept_button.pressed.connect(_on_accept_button_pressed)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -62,3 +68,17 @@ func _on_accept_button_pressed():
 
 func set_selectable_cards(cards):
 	selectable_cards = cards
+	
+func _set_selection_type(value):
+	selection_type = value
+	_update_prompt_label()
+	
+func _update_prompt_label():
+	if prompt_label == null:
+		return
+	var new_text = ""
+	match selection_type:
+		CardSelectionType.DISCARD:
+			new_text = "Choose " + str(target_count) + " card(s) to discard"
+	prompt_label.text = new_text
+			

@@ -3,6 +3,7 @@ class_name GameManager
 
 const card_template = preload("res://Scenes/card.tscn")
 const card_selector = preload("res://Scenes/card_selector.tscn")
+const CardSelectionType = preload("res://Scripts/card_selector.gd").CardSelectionType
 
 var action_card_pool = []
 var discard_pile
@@ -125,6 +126,7 @@ func start_discard_selection(number, pile):
 	displayer.clear()
 	selector.set_selectable_cards(cards)
 	selector.target_count = number
+	selector.selection_type = 0
 	selector.selection_done.connect(_on_selection_finished)
 	add_child(selector)
 	temp_selector = selector

@@ -78,6 +78,6 @@ scale = Vector2(0.6, 0.6)
 position = Vector2(-775, -344)
 
 [node name="LocationBoard" parent="." instance=ExtResource("8_6fajb")]
-position = Vector2(-201, -288)
+position = Vector2(-208, -328)
 
 [editable path="DropZone"]
