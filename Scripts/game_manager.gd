@@ -6,45 +6,44 @@ const card_selector = preload("res://Scenes/card_selector.tscn")
 const CardSelectionType = preload("res://Scripts/card_selector.gd").CardSelectionType
 
 var action_card_pool = []
-var discard_pile
-var play_zone:DropComponent
-var drag_manager:DragManager
-var action_deck:CardDeck
-var location_deck:CardDeck
-var hand:Hand
-var location_board
+@export var discard_pile:Node2D
+@export var play_zone:DropComponent
+@export var drag_manager:DragManager
+@export var action_deck:CardDeck
+@export var location_deck:CardDeck
+@export var hand:Hand
+@export var location_board:Node2D
 var temp_selection_pile
 var temp_selector
+var decks = {}
+var displayers = {}
 
-var debug_button
+@export var debug_button:Button
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	_set_nodes()
+	# Not all objects are ready when the GameManager is ready
+	# So we just defer some initialization to when the whole scene is ready
+	_connect_scene_ready()
+	_register_decks()
+	_register_displayers()
+
+# Deffered initialization
+func _on_scene_ready():
 	_connect_signals()
 	_fill_decks()
-
-func _on_scene_ready():
 	_init_game()
 	
-func _set_nodes():
-	drag_manager = get_node("/root/DragManagerSingleton")
-	action_deck = get_tree().root.get_node("MainNode/ActionDeck")
-	location_deck = get_tree().root.get_node("MainNode/LocationDeck")
-	debug_button = get_tree().root.get_node("MainNode/Button") 
-	hand = get_tree().root.get_node("MainNode/Hand")
-	discard_pile = get_tree().root.get_node("MainNode/DiscardPile") # TODO: find a better way to get node
-	play_zone = get_tree().root.get_node("MainNode/DropZone")
-	location_board = get_tree().root.get_node("MainNode/LocationBoard")
+func _connect_scene_ready():
+	get_tree().root.ready.connect(_on_scene_ready)
 	
 func _connect_signals():
 	play_zone.draggable_dropped.connect(_on_card_dropped_on_play_zone.bind())
 	debug_button.pressed.connect(draw_card.bind("actions"))
 	drag_manager.draggable_released.connect(_on_draggable_dropped.bind())
-	get_tree().root.ready.connect(_on_scene_ready)
-	
+
 func _on_card_dropped_on_play_zone(draggable:Node, dropzone):
-	var card:Card = draggable.get_node("..")
+	var card:Card = draggable.get_node("..") # TODO: that's not great
 	play_card(card)
 	
 func _fill_decks():
@@ -98,25 +97,23 @@ func draw_card(pile):
 		var new_card = create_card(card_path, target)
 		target.add_card(new_card)
 		
+func _register_decks():
+	decks["actions"] = action_deck
+	decks["location"] = location_deck
+	
+func _register_displayers():
+	displayers["actions"] = hand
+	displayers["location"] = location_board
+		
 func _get_deck(key):
-	match(key):
-		"actions":
-			return action_deck
-		"location":
-			return location_deck
-		_:
-			printerr("Trying to access unknown deck " + key)
-			return
-			
+	if key in decks:
+		return decks[key]
+	printerr("Trying to access unknown deck " + key)
+
 func _get_target_displayer(key):
-	match(key):
-		"actions":
-			return hand
-		"location":
-			return location_board
-		_:
-			printerr("Trying to access unknown deck " + key)
-			return
+	if key in displayers:
+		return displayers[key]
+	printerr("Trying to access unknown displayer " + key)
 		
 func start_discard_selection(number, pile):
 	temp_selection_pile = pile
@@ -126,7 +123,7 @@ func start_discard_selection(number, pile):
 	displayer.clear()
 	selector.set_selectable_cards(cards)
 	selector.target_count = number
-	selector.selection_type = 0
+	selector.selection_type = 0 # This is supposed to be an enum but Godot has some limitations
 	selector.selection_done.connect(_on_selection_finished)
 	add_child(selector)
 	temp_selector = selector
