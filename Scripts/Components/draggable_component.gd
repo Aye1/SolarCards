@@ -53,12 +53,12 @@ func _handle_drag():
 		
 func _area_entered(area:Area2D):
 	# TODO: manage multiple areas
-	if area is DropZone:
+	if area is DropComponent:
 		#print("area entered")
 		current_drop_zone = area
 	
 func _area_exited(area:Area2D):
-	if area is DropZone and current_drop_zone == area:
+	if area is DropComponent and current_drop_zone == area:
 		#print("area exited")
 		current_drop_zone = null
 		

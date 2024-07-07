@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://jy0sd4wj60ea"]
 
-[ext_resource type="Script" path="res://Scripts/drop_zone.gd" id="1_w8ghs"]
+[ext_resource type="Script" path="res://Scripts/Components/drop_component.gd" id="1_w8ghs"]
 [ext_resource type="Texture2D" uid="uid://csotggrk50psr" path="res://Images/Card.png" id="2_4gujw"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cl6un"]
