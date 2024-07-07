@@ -6,10 +6,10 @@ const card_selector = preload("res://Scenes/card_selector.tscn")
 
 var action_card_pool = []
 var discard_pile
-var play_zone:DropZone
+var play_zone:DropComponent
 var drag_manager:DragManager
-var action_deck
-var location_deck
+var action_deck:CardDeck
+var location_deck:CardDeck
 var hand:Hand
 var location_board
 var temp_selection_pile

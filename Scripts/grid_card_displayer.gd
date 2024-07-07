@@ -1,8 +1,9 @@
 extends CardDisplayer
 class_name GridCardDisplayer
 
-@export var max_cols = 5
-@export var max_rows = 3
+@export_range (1,20) var max_cols = 5
+@export_range (1,20) var max_rows = 3
+@export var expand:bool
 
 func reorder_cards():
 	var count = cards.size()
