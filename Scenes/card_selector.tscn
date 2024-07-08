@@ -39,7 +39,7 @@ position = Vector2(0, 100)
 script = ExtResource("3_rfw4m")
 max_cols = 10
 max_rows = 1
-card_spacing = "Expanded"
+horizontal_alignment = "Center"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CardDisplayer"]
 shape = SubResource("RectangleShape2D_uk8vr")

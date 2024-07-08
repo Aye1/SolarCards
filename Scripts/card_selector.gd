@@ -32,6 +32,7 @@ func _enable_button_if_possible():
 	accept_button.disabled = !_can_accept()
 	
 func _can_accept() -> bool:
+	# TODO: manage edge case when we have less selectable cards than the target
 	return selected_cards.size() == target_count
 	
 func _connect_cards() -> void:
