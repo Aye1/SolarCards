@@ -63,7 +63,7 @@ func _area_exited(area:Area2D):
 		current_drop_zone = null
 		
 func _check_drop_zone():
-	if current_drop_zone != null:
+	if current_drop_zone != null and can_be_dragged:
 		current_drop_zone.signal_draggable_dropped(self)
 		
 func _set_is_current_hover(value:bool):
