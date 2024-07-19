@@ -3,7 +3,6 @@ class_name GameManager
 
 const card_template = preload("res://Scenes/card.tscn")
 const card_selector = preload("res://Scenes/card_selector.tscn")
-const CardSelectionType = preload("res://Scripts/card_selector.gd").CardSelectionType
 
 var action_card_pool = []
 @export var discard_pile:Node2D
@@ -54,9 +53,8 @@ func _init_game():
 	draw_cards(3, "actions")
 
 func _on_draggable_dropped(draggable):
-	#hand.reorder_cards()
-	location_board.reorder_cards()
-
+	pass
+	#location_board.reorder_cards()
 
 func create_card(path, board) -> Card:
 	var new_card = card_template.instantiate()

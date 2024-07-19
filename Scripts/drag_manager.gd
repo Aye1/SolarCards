@@ -15,7 +15,7 @@ func register_draggable(draggable):
 		draggable.drag_stopped.connect(_on_draggable_released.bind(draggable))
 		draggable.mouse_hover_component.mouse_on.connect(_on_draggable_mouse_on.bind(draggable))
 		draggable.mouse_hover_component.mouse_off.connect(_on_draggable_mouse_off.bind(draggable))
-		print("Draggable registered")
+		print("Draggable registered " + draggable.owner.name)
 	
 func unregister_draggable(draggable):
 	if draggable is DraggableComponent and draggables.has(draggable):
@@ -54,11 +54,11 @@ func _block_other_draggables():
 		if drag == null:
 			printerr("Null draggable found")
 		elif drag != currently_dragged:
-			drag.set_can_be_grabbed(false)
+			drag.can_be_dragged = false
 
 func _unblock_all_dragables():
 	for drag in draggables:
 		if drag == null:
 			printerr("Null draggable found")
 		else:
-			drag.set_can_be_grabbed(true)
+			drag.can_be_dragged = true

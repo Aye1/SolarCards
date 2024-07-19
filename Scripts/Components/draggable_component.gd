@@ -6,11 +6,12 @@ signal drag_stopped
 
 @export var mouse_hover_component:MouseHoverComponent
 @export var collision_object:CollisionObject2D
+@export var highlight:Node2D
 
-var is_dragged = false
-var is_current_hover = false : set = _set_is_current_hover
+var is_dragged:bool = false
+var is_current_hover:bool = false : set = _set_is_current_hover
 var drag_local_point
-var can_be_dragged = true
+var can_be_dragged:bool = true : set = _set_can_be_dragged
 var current_drop_zone
 
 func _ready():
@@ -24,8 +25,10 @@ func _connect_signals():
 	collision_object.area_entered.connect(_area_entered)
 	collision_object.area_exited.connect(_area_exited)
 		
-func _physics_process(delta):
+func _process(delta):
 	_handle_drag()
+	if can_be_dragged:
+		_set_highlight_visibility()
 	
 func _input_event(viewport, event, shape_idx):
 	if event is InputEventMouseButton:
@@ -37,7 +40,6 @@ func _handle_mouse_leftclick(event):
 	if mouse_hover_component == null:
 		printerr("MouseHoverComponent not found for " + self.name)
 	if mouse_hover_component.mouse_is_on and event.pressed:
-		#selected.emit()
 		if can_be_dragged:
 			is_dragged = true
 			drag_started.emit()
@@ -51,9 +53,13 @@ func _handle_drag():
 	if is_dragged:
 		owner.global_position = get_global_mouse_position() - drag_local_point
 		
+func _set_highlight_visibility():
+	if highlight != null:
+		highlight.set_visible(current_drop_zone != null)
+
 func _area_entered(area:Area2D):
 	# TODO: manage multiple areas
-	if area is DropComponent:
+	if area is DropComponent and can_be_dragged:
 		#print("area entered")
 		current_drop_zone = area
 	
@@ -70,8 +76,8 @@ func _set_is_current_hover(value:bool):
 	is_current_hover = value
 	mouse_hover_component.can_scale = is_current_hover
 
-func set_can_be_grabbed(can_be):
-	can_be_dragged = can_be
+func _set_can_be_dragged(value:bool):
+	can_be_dragged = value
 	
 func set_drop_zone(drop_zone):
 	current_drop_zone = drop_zone

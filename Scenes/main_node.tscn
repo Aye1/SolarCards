@@ -42,16 +42,18 @@ offset_bottom = -24.0
 text = "Draw Card"
 
 [node name="DropZone" parent="." instance=ExtResource("3_g27dn")]
-position = Vector2(508, -228)
+position = Vector2(-442, 13)
 
 [node name="CollisionShape2D" parent="DropZone" index="0"]
-position = Vector2(418.375, -70.5)
+position = Vector2(418.375, -30.5)
 
 [node name="Sprite2D" parent="DropZone/CollisionShape2D" index="0"]
+visible = false
 position = Vector2(0.624985, -1.50001)
 scale = Vector2(5.344, 0.502857)
 
 [node name="Label" parent="DropZone/CollisionShape2D" index="1"]
+visible = false
 offset_left = -641.375
 offset_top = -74.5
 offset_right = -506.375
@@ -66,6 +68,7 @@ script = ExtResource("5_6q0u0")
 [node name="Hand" type="Area2D" parent="."]
 position = Vector2(-53, 400)
 script = ExtResource("6_1iehq")
+lock_cards = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hand"]
 position = Vector2(-1, 33)
@@ -91,9 +94,10 @@ position = Vector2(-798, 394)
 scale = Vector2(0.6, 0.6)
 
 [node name="LocationDeck" parent="." instance=ExtResource("7_hm88m")]
-position = Vector2(-775, -344)
+position = Vector2(-843, -410)
+scale = Vector2(0.6, 0.6)
 
 [node name="LocationBoard" parent="." instance=ExtResource("8_6fajb")]
-position = Vector2(-208, -328)
+position = Vector2(-333, -333)
 
 [editable path="DropZone"]

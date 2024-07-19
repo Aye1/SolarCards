@@ -9,8 +9,8 @@ var name_label
 var desc_label
 var cost_label
 var highlight_sprite
-var draggable
-var selectable
+var draggable:DraggableComponent
+var selectable:SelectableComponent
 var effects = []
 
 const scale_up_vector = Vector2(1.1,1.1)

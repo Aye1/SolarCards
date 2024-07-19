@@ -4,6 +4,7 @@ class_name CardDisplayer
 const card_width = Card.card_width
 const card_height = Card.card_height
 
+@export var lock_cards:bool = true
 var cards = []
 var shape:CollisionShape2D
 var rect:Rect2
@@ -14,12 +15,16 @@ func _ready():
 
 func add_card(card:Card):
 	if not (card in cards):
+		if lock_cards:
+			card.draggable.can_be_dragged = false
 		cards.append(card)
 		reorder_cards()
 		
 func add_cards(new_cards):
 	for card in new_cards:
 		if not (card in cards):
+			if lock_cards:
+				card.draggable.can_be_dragged = false
 			cards.append(card)
 			if card.get_parent() != self:
 				card.get_parent().remove_child(card)

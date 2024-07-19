@@ -53,6 +53,7 @@ func _get_begin_x(current_row:int) -> float:
 # Determines the vertical starting position to put cards
 # It's an offset from the grid center		
 func _get_begin_y() -> float:
+	@warning_ignore("integer_division")
 	var row_count = (cards.size() - 1) / max_cols + 1
 	match vertical_alignment:
 		"Top":
@@ -81,7 +82,7 @@ func _get_spacing_y() -> float:
 		"Fixed":
 			return card_height + vertical_margin
 		"Expanded":
-			return rect.size.y / ((cards.size()-1) / max_cols + 1)
+			return rect.size.y / float(((cards.size()-1) / max_cols + 1))
 		_:
 			printerr("Unexpected spacing in GridCardDisplayer: " + card_spacing)
 			return 0.0
