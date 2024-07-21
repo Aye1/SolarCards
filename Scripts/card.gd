@@ -52,6 +52,7 @@ func load_json(path):
 			cost = content_dict["cost"]
 			for effect in content_dict["effects"]:
 				effects.append(CardEffect.new(effect))
+	_init_texts()
 				
 func is_hovered() -> bool:
 	return draggable.is_current_hover

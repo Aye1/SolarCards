@@ -1,12 +1,14 @@
-[gd_scene load_steps=3 format=3 uid="uid://iu3ns5dlfy58"]
+[gd_scene load_steps=4 format=3 uid="uid://iu3ns5dlfy58"]
 
 [ext_resource type="Script" path="res://Scripts/Editor/card_editor.gd" id="1_1h7wb"]
 [ext_resource type="Theme" uid="uid://ltgnusplfwvg" path="res://Themes/editor.tres" id="1_hbo63"]
+[ext_resource type="PackedScene" uid="uid://dwtypwamr7550" path="res://Scenes/Editor/card_detail_editor.tscn" id="3_mkv13"]
 
-[node name="CardEditor" type="Node2D" node_paths=PackedStringArray("path_text_edit", "file_tree")]
+[node name="CardEditor" type="Node2D" node_paths=PackedStringArray("path_text_edit", "file_tree", "card_detail_editor")]
 script = ExtResource("1_1h7wb")
 path_text_edit = NodePath("Control/HSplitContainer/LeftPanel/MarginContainer/VBoxContainer/TextEdit")
 file_tree = NodePath("Control/HSplitContainer/LeftPanel/MarginContainer/VBoxContainer/Tree")
+card_detail_editor = NodePath("Control/HSplitContainer/RightPanel/CardDetailEditor")
 
 [node name="Control" type="Control" parent="."]
 layout_direction = 1
@@ -55,8 +57,7 @@ text = "Path
 [node name="TextEdit" type="TextEdit" parent="Control/HSplitContainer/LeftPanel/MarginContainer/VBoxContainer"]
 custom_minimum_size = Vector2(0, 40)
 layout_mode = 2
-text = "res://Cards
-"
+text = "res://Cards"
 editable = false
 
 [node name="Button" type="Button" parent="Control/HSplitContainer/LeftPanel/MarginContainer/VBoxContainer"]
@@ -73,9 +74,12 @@ text = "Files
 [node name="Tree" type="Tree" parent="Control/HSplitContainer/LeftPanel/MarginContainer/VBoxContainer"]
 custom_minimum_size = Vector2(0, 400)
 layout_mode = 2
-hide_root = true
 
 [node name="RightPanel" type="Panel" parent="Control/HSplitContainer"]
 layout_mode = 2
 
+[node name="CardDetailEditor" parent="Control/HSplitContainer/RightPanel" instance=ExtResource("3_mkv13")]
+layout_mode = 1
+
 [connection signal="pressed" from="Control/HSplitContainer/LeftPanel/MarginContainer/VBoxContainer/Button" to="." method="_on_button_pressed"]
+[connection signal="item_selected" from="Control/HSplitContainer/LeftPanel/MarginContainer/VBoxContainer/Tree" to="." method="_on_tree_item_selected"]

@@ -3,6 +3,7 @@ class_name CardEditor
 
 @export var path_text_edit:TextEdit
 @export var file_tree:Tree
+@export var card_detail_editor:CardDetailEditor
 var path:String = "res://Cards"
 
 
@@ -41,7 +42,17 @@ func _add_tree_item(folder:String, current_tree_item:TreeItem) -> TreeItem:
 	var new_item = current_tree_item.create_child()
 	new_item.set_text(0, folder)
 	return new_item
+	
+func _on_tree_item_selected():
+	if !card_detail_editor:
+		printerr("CardDetailEditor not found for CardEditor")
+		return
+	var fullpath = file_tree.get_selected().get_text(0)
+	var parent = file_tree.get_selected().get_parent()
+	while parent is TreeItem:
+		fullpath = parent.get_text(0) + "/" + fullpath
+		parent = parent.get_parent()
+	card_detail_editor.load_card(fullpath)
 				
-
 func _on_button_pressed():
 	_populate_item_list()
