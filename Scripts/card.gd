@@ -50,9 +50,28 @@ func load_json(path):
 			title = content_dict["title"]
 			desc = content_dict["description"]
 			cost = content_dict["cost"]
+			effects.clear()
 			for effect in content_dict["effects"]:
 				effects.append(CardEffect.new(effect))
 	_init_texts()
+	
+func save_json(path):
+	var dict = {}
+	dict["type"] = type
+	dict["title"] = title
+	dict["description"] = desc
+	dict["cost"] = cost
+
+	var effect_dict = []
+	for effect in effects:
+		effect_dict.append(effect.to_dict())
+	dict["effects"] = effect_dict
+	
+	var file = FileAccess.open(path, FileAccess.WRITE)
+	var json_obj = JSON.stringify(dict)
+	file.store_line(json_obj)
+	file.close()
+	
 				
 func is_hovered() -> bool:
 	return draggable.is_current_hover

@@ -1,32 +1,141 @@
-[gd_scene load_steps=3 format=3 uid="uid://dwtypwamr7550"]
+[gd_scene load_steps=4 format=3 uid="uid://dwtypwamr7550"]
 
 [ext_resource type="PackedScene" uid="uid://cd4583kr0prch" path="res://Scenes/card.tscn" id="1_idm3r"]
 [ext_resource type="Script" path="res://Scripts/Editor/card_detail_editor.gd" id="1_x28fs"]
+[ext_resource type="Theme" uid="uid://ltgnusplfwvg" path="res://Themes/editor.tres" id="2_argsm"]
 
-[node name="CardDetailEditor" type="Control" node_paths=PackedStringArray("card")]
+[node name="CardDetailEditor" type="Control" node_paths=PackedStringArray("card", "name_text_edit", "cost_spin_box", "desc_text_edit", "path_text_edit", "save_button")]
 layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-script = ExtResource("1_x28fs")
-card = NodePath("AspectRatioContainer/Card")
-
-[node name="AspectRatioContainer" type="AspectRatioContainer" parent="."]
-layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = -20.0
-offset_right = 20.0
-offset_bottom = 20.0
+offset_left = -960.0
+offset_top = -540.0
+offset_right = -960.0
+offset_bottom = -540.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_x28fs")
+card = NodePath("MarginContainer/HBoxContainer/CenterContainer/Card")
+name_text_edit = NodePath("MarginContainer/HBoxContainer/VBoxContainer/GridContainer/NameTextEdit")
+cost_spin_box = NodePath("MarginContainer/HBoxContainer/VBoxContainer/GridContainer/CostSpinBox")
+desc_text_edit = NodePath("MarginContainer/HBoxContainer/VBoxContainer/GridContainer/DescTextEdit")
+path_text_edit = NodePath("MarginContainer/HBoxContainer/VBoxContainer/GridContainer/PathTextEdit")
+save_button = NodePath("MarginContainer/HBoxContainer/VBoxContainer/SaveButton")
 
-[node name="Card" parent="AspectRatioContainer" instance=ExtResource("1_idm3r")]
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+theme = ExtResource("2_argsm")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 2
+
+[node name="GridContainer" type="GridContainer" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+columns = 2
+
+[node name="NameLabel" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer/GridContainer"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 6
+text = "Name"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="NameTextEdit" type="TextEdit" parent="MarginContainer/HBoxContainer/VBoxContainer/GridContainer"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="CostLabel" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer/GridContainer"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 6
+text = "Cost"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="CostSpinBox" type="SpinBox" parent="MarginContainer/HBoxContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+
+[node name="DescLabel" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer/GridContainer"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 6
+text = "Description"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="DescTextEdit" type="TextEdit" parent="MarginContainer/HBoxContainer/VBoxContainer/GridContainer"]
+custom_minimum_size = Vector2(0, 120)
+layout_mode = 2
+wrap_mode = 1
+
+[node name="PathLabel" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer/GridContainer"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 6
+text = "Path"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="PathTextEdit" type="TextEdit" parent="MarginContainer/HBoxContainer/VBoxContainer/GridContainer"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+editable = false
+
+[node name="HSeparator" type="HSeparator" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="EffectsLabel" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 6
+text = "Effects
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("2_argsm")
+
+[node name="EffectsGridContainer" type="GridContainer" parent="MarginContainer/HBoxContainer/VBoxContainer/MarginContainer"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+
+[node name="HSeparator2" type="HSeparator" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="SaveButton" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "Save"
+
+[node name="CenterContainer" type="CenterContainer" parent="MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Card" parent="MarginContainer/HBoxContainer/CenterContainer" instance=ExtResource("1_idm3r")]
+visible = false
 position = Vector2(0, 0)
 scale = Vector2(2, 2)
+
+[node name="ItemList" type="ItemList" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
