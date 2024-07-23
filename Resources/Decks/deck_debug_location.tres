@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="DeckResource" load_steps=3 format=3 uid="uid://3qmefnoxq26b"]
+
+[ext_resource type="Script" path="res://Scripts/Resources/deck_resource.gd" id="1_iyhss"]
+[ext_resource type="Resource" uid="uid://5e10gy02opbs" path="res://Resources/Cards/Characters/card_character_debug.tres" id="1_m0f60"]
+
+[resource]
+script = ExtResource("1_iyhss")
+cards = Array[Resource("res://Scripts/Resources/card_resource.gd")]([ExtResource("1_m0f60"), ExtResource("1_m0f60"), ExtResource("1_m0f60"), ExtResource("1_m0f60"), ExtResource("1_m0f60"), ExtResource("1_m0f60"), ExtResource("1_m0f60"), ExtResource("1_m0f60"), ExtResource("1_m0f60"), ExtResource("1_m0f60"), ExtResource("1_m0f60"), ExtResource("1_m0f60"), ExtResource("1_m0f60"), ExtResource("1_m0f60"), ExtResource("1_m0f60"), ExtResource("1_m0f60"), ExtResource("1_m0f60"), ExtResource("1_m0f60"), ExtResource("1_m0f60"), ExtResource("1_m0f60")])

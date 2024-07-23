@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="CardResource" load_steps=4 format=3 uid="uid://sr6d8m6gbgvl"]
+
+[ext_resource type="Script" path="res://Scripts/Resources/card_effect_resource.gd" id="1_0dxfe"]
+[ext_resource type="Script" path="res://Scripts/Resources/card_resource.gd" id="1_554ga"]
+
+[sub_resource type="Resource" id="Resource_taivp"]
+script = ExtResource("1_0dxfe")
+type = "draw"
+value = "2"
+value2 = ""
+target = "location"
+
+[resource]
+script = ExtResource("1_554ga")
+title = "Investigate"
+type = "action"
+cost = 1
+desc = "Draw 2 crads from the location pile"
+effects = Array[ExtResource("1_0dxfe")]([SubResource("Resource_taivp")])

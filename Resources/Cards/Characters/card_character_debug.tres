@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="CardCharacterResource" load_steps=2 format=3 uid="uid://5e10gy02opbs"]
+
+[ext_resource type="Script" path="res://Scripts/Resources/card_character_resource.gd" id="1_wax8k"]
+
+[resource]
+script = ExtResource("1_wax8k")
+dialogs = Array[String]([])
+title = "Test Character"
+type = "character"
+cost = 0
+desc = "This  is a debug character"
+effects = Array[Resource("res://Scripts/Resources/card_effect_resource.gd")]([])

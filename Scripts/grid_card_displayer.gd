@@ -82,6 +82,7 @@ func _get_spacing_y() -> float:
 		"Fixed":
 			return card_height + vertical_margin
 		"Expanded":
+			@warning_ignore("integer_division")
 			return rect.size.y / float(((cards.size()-1) / max_cols + 1))
 		_:
 			printerr("Unexpected spacing in GridCardDisplayer: " + card_spacing)

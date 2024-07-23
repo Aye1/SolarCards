@@ -5,7 +5,7 @@ signal selection_done(selected_cards, all_cards)
 
 enum CardSelectionType { DISCARD = 0 }
 
-var target_count = 10000
+var target_count:int = 10000
 var selection_type = CardSelectionType.DISCARD : set = _set_selection_type
 var selectable_cards = []
 var selected_cards = []

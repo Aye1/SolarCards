@@ -1,0 +1,26 @@
+[gd_resource type="Resource" script_class="CardResource" load_steps=5 format=3 uid="uid://cmvjfcj4twaeg"]
+
+[ext_resource type="Script" path="res://Scripts/Resources/card_effect_resource.gd" id="1_5gacm"]
+[ext_resource type="Script" path="res://Scripts/Resources/card_resource.gd" id="1_agiil"]
+
+[sub_resource type="Resource" id="Resource_2n706"]
+script = ExtResource("1_5gacm")
+type = "draw"
+value = "2"
+value2 = ""
+target = "actions"
+
+[sub_resource type="Resource" id="Resource_ngmg5"]
+script = ExtResource("1_5gacm")
+type = "discard"
+value = "1"
+value2 = ""
+target = "actions"
+
+[resource]
+script = ExtResource("1_agiil")
+title = "New methods"
+type = "action"
+cost = 1
+desc = "Draw 2 cards from the action pile, then discard 1"
+effects = Array[ExtResource("1_5gacm")]([SubResource("Resource_2n706"), SubResource("Resource_ngmg5")])
