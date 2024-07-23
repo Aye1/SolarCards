@@ -1,4 +1,4 @@
 extends Resource
 class_name DeckResource
 
-@export var cards:Array[CardResource]
+@export var cards:Array[ResourceCountKeyValue]

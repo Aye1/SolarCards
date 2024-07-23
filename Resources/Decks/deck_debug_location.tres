@@ -1,8 +1,14 @@
-[gd_resource type="Resource" script_class="DeckResource" load_steps=3 format=3 uid="uid://3qmefnoxq26b"]
+[gd_resource type="Resource" script_class="DeckResource" load_steps=5 format=3 uid="uid://3qmefnoxq26b"]
 
 [ext_resource type="Script" path="res://Scripts/Resources/deck_resource.gd" id="1_iyhss"]
 [ext_resource type="Resource" uid="uid://5e10gy02opbs" path="res://Resources/Cards/Characters/card_character_debug.tres" id="1_m0f60"]
+[ext_resource type="Script" path="res://Scripts/Resources/resource_count_key_value.gd" id="2_oofon"]
+
+[sub_resource type="Resource" id="Resource_m30co"]
+script = ExtResource("2_oofon")
+resource = ExtResource("1_m0f60")
+count = 25
 
 [resource]
 script = ExtResource("1_iyhss")
-cards = Array[Resource("res://Scripts/Resources/card_resource.gd")]([ExtResource("1_m0f60"), ExtResource("1_m0f60"), ExtResource("1_m0f60"), ExtResource("1_m0f60"), ExtResource("1_m0f60"), ExtResource("1_m0f60"), ExtResource("1_m0f60"), ExtResource("1_m0f60"), ExtResource("1_m0f60"), ExtResource("1_m0f60"), ExtResource("1_m0f60"), ExtResource("1_m0f60"), ExtResource("1_m0f60"), ExtResource("1_m0f60"), ExtResource("1_m0f60"), ExtResource("1_m0f60"), ExtResource("1_m0f60"), ExtResource("1_m0f60"), ExtResource("1_m0f60"), ExtResource("1_m0f60")])
+cards = Array[ExtResource("2_oofon")]([SubResource("Resource_m30co")])

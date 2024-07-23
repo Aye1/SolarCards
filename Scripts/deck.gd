@@ -21,7 +21,15 @@ func load_from_resource(path:String) -> void:
 		printerr("File does not exist: " + path)
 		return
 	deck_model = load(path)
-	cards = deck_model.cards
+	_expand_card_list()
+	
+func _expand_card_list():
+	if cards:
+		cards.clear()
+		
+	for card in deck_model.cards:
+		for i in range(0, card.count):
+			cards.append(card.resource)
 
 func _add_card(card) -> void:
 	cards.append(card)
