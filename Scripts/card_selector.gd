@@ -1,4 +1,4 @@
-extends Node2D
+extends Control
 class_name CardSelector
 
 signal selection_done(selected_cards, all_cards)

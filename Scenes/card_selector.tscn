@@ -7,8 +7,10 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_uk8vr"]
 size = Vector2(1219, 415)
 
-[node name="CardSelector" type="Node2D"]
+[node name="CardSelector" type="Control"]
 z_index = 50
+layout_mode = 3
+anchors_preset = 0
 script = ExtResource("1_1dix8")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
