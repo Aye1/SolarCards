@@ -5,13 +5,15 @@ const card_template = preload("res://Scenes/card.tscn")
 const card_selector = preload("res://Scenes/card_selector.tscn")
 
 var action_card_pool = []
-@export var discard_pile:Node2D
+@export var discard_pile:DiscardPile
 @export var play_zone:DropComponent
 @export var drag_manager:DragManager
+@export var turn_manager:TurnManager
 @export var action_deck:Deck
 @export var location_deck:Deck
 @export var hand:Hand
 @export var location_board:Node2D
+var card_draw:int = 5
 var temp_selection_pile
 var temp_selector
 var decks = {}
@@ -39,6 +41,7 @@ func _connect_scene_ready():
 func _connect_signals():
 	play_zone.draggable_dropped.connect(_on_card_dropped_on_play_zone.bind())
 	debug_button.pressed.connect(draw_card.bind("actions"))
+	turn_manager.turn_changed.connect(_on_new_turn)
 	#drag_manager.draggable_released.connect(_on_draggable_dropped.bind())
 
 func _on_card_dropped_on_play_zone(draggable:Node, dropzone):
@@ -50,7 +53,11 @@ func _fill_decks():
 	location_deck.load_from_resource("res://Resources/Decks/deck_debug_location.tres")
 	
 func _init_game():
-	draw_cards(5, "actions")
+	draw_cards(card_draw, "actions")
+	
+func _on_new_turn(turn):
+	empty_hand()
+	draw_cards(card_draw, "actions")
 
 #func _on_draggable_dropped(draggable):
 #	pass
@@ -95,6 +102,10 @@ func draw_card(pile):
 		var new_card = create_card(card_model, target)
 		target.add_card(new_card)
 		
+func empty_hand():
+	var discarded_cards = hand.clear()
+	discard_pile.discard_cards(discarded_cards)
+
 func _register_decks():
 	decks["actions"] = action_deck
 	decks["location"] = location_deck

@@ -20,3 +20,7 @@ func discard_card(card:Card):
 	card.visible = false
 	_update_label()
 
+func discard_cards(cards):
+	for card in cards:
+		discard_card(card)
+
