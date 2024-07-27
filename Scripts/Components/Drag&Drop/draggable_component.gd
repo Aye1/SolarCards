@@ -7,6 +7,7 @@ signal drag_stopped
 @export var mouse_hover_component:MouseHoverComponent
 @export var collision_object:CollisionObject2D
 @export var highlight:Node2D
+@export var drag_conditions:DragConditionComponent
 
 var is_dragged:bool = false
 var is_current_hover:bool = false : set = _set_is_current_hover
@@ -61,7 +62,8 @@ func _area_entered(area:Area2D):
 	# TODO: manage multiple areas
 	if area is DropComponent and can_be_dragged:
 		#print("area entered")
-		current_drop_zone = area
+		if _check_conditions(area):
+			current_drop_zone = area
 	
 func _area_exited(area:Area2D):
 	if area is DropComponent and current_drop_zone == area:
@@ -81,3 +83,11 @@ func _set_can_be_dragged(value:bool):
 	
 func set_drop_zone(drop_zone):
 	current_drop_zone = drop_zone
+	
+func _check_conditions(drop:DropComponent) -> bool:
+	if !drop.can_receive_drop:
+		return false
+	var cond:DropConditionComponent = drop.drop_conditions
+	if !drag_conditions or !cond:
+		return true
+	return drag_conditions.accepts(cond) and cond.accepts(drag_conditions)

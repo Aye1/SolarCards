@@ -46,7 +46,10 @@ func _connect_signals():
 
 func _on_card_dropped_on_play_zone(draggable:Node, dropzone):
 	var card:Card = draggable.get_node("..") # TODO: that's not great
-	play_card(card)
+	if dropzone == play_zone:
+		play_card(card)
+	else:
+		play_character_card(card)
 	
 func _fill_decks():
 	action_deck.load_from_resource("res://Resources/Decks/deck_debug_res.tres")
@@ -77,6 +80,10 @@ func play_card(card):
 		_process_card_effect(effect)
 	discard_pile.discard_card(card)
 	
+func play_character_card(card):
+	#TODO: implement
+	print("playing card")
+	
 func _process_card_effect(effect):
 	match effect.type:
 		"draw":
@@ -101,6 +108,11 @@ func draw_card(pile):
 	if card_model != null:
 		var new_card = create_card(card_model, target)
 		target.add_card(new_card)
+		
+		#TODO: this could be way cleaner
+		if pile == "location":
+			new_card.drop_component.can_receive_drop = true
+			new_card.drop_component.draggable_dropped.connect(_on_card_dropped_on_play_zone)
 		
 func empty_hand():
 	var discarded_cards = hand.clear()

@@ -6,4 +6,3 @@ class_name CardResource
 @export var cost:int
 @export var desc:String
 @export var effects:Array[CardEffectResource]
-

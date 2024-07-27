@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://pqkvsp4c160p" path="res://Scenes/game_manager.tscn" id="1_hhkdq"]
 [ext_resource type="PackedScene" uid="uid://bkiyj5htjmvf0" path="res://Scenes/drag_manager.tscn" id="2_e043l"]
 [ext_resource type="PackedScene" uid="uid://cpe01wqmvtd1j" path="res://Scenes/turn_manager.tscn" id="3_8t888"]
-[ext_resource type="PackedScene" uid="uid://jy0sd4wj60ea" path="res://Scenes/Components/drop_component.tscn" id="3_g27dn"]
+[ext_resource type="PackedScene" uid="uid://jy0sd4wj60ea" path="res://Scenes/Components/Drag&Drop/drop_component.tscn" id="3_g27dn"]
 [ext_resource type="PackedScene" uid="uid://ccr74mhxgrvdf" path="res://Scenes/discard_pile.tscn" id="4_50tn1"]
 [ext_resource type="Script" path="res://Scripts/discard_pile.gd" id="5_6q0u0"]
 [ext_resource type="Script" path="res://Scripts/ui_manager.gd" id="5_cum62"]
@@ -39,9 +39,15 @@ debug_button = NodePath("../../UI/DebugDrawButton")
 
 [node name="UI" type="Control" parent="." node_paths=PackedStringArray("game_manager", "turn_manager", "turn_label", "turn_button")]
 layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -960.0
+offset_top = -540.0
+offset_right = 960.0
+offset_bottom = 350.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 1
@@ -61,10 +67,10 @@ text = "Next turn"
 
 [node name="DebugDrawButton" type="Button" parent="UI"]
 layout_mode = 0
-offset_left = 100.0
-offset_top = 699.0
-offset_right = 218.0
-offset_bottom = 785.0
+offset_left = 101.0
+offset_top = 724.0
+offset_right = 219.0
+offset_bottom = 810.0
 text = "Draw Card"
 
 [node name="Turn Label" type="Label" parent="UI"]
@@ -86,22 +92,10 @@ horizontal_alignment = 2
 
 [node name="DropZone" parent="." instance=ExtResource("3_g27dn")]
 position = Vector2(-442, 13)
+can_receive_drop = true
 
 [node name="CollisionShape2D" parent="DropZone" index="0"]
-position = Vector2(418.375, -30.5)
-
-[node name="Sprite2D" parent="DropZone/CollisionShape2D" index="0"]
-visible = false
-position = Vector2(0.624985, -1.50001)
-scale = Vector2(5.344, 0.502857)
-
-[node name="Label" parent="DropZone/CollisionShape2D" index="1"]
-visible = false
-offset_left = -641.375
-offset_top = -74.5
-offset_right = -506.375
-offset_bottom = -25.5
-metadata/_edit_use_anchors_ = true
+position = Vector2(440.5, 31.5)
 
 [node name="DiscardPile" parent="." instance=ExtResource("4_50tn1")]
 position = Vector2(838, 388)
@@ -109,6 +103,7 @@ scale = Vector2(0.6, 0.6)
 script = ExtResource("5_6q0u0")
 
 [node name="Hand" type="Area2D" parent="."]
+z_index = 2
 position = Vector2(-53, 400)
 script = ExtResource("6_1iehq")
 lock_cards = false

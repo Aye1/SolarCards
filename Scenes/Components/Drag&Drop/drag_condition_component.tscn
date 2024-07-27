@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://b1sdxkop2nokr"]
+
+[ext_resource type="Script" path="res://Scripts/Components/Drag&Drop/drag_condition_component.gd" id="1_oy8rd"]
+
+[node name="DragConditionComponent" type="Node"]
+script = ExtResource("1_oy8rd")

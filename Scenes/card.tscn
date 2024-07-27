@@ -1,11 +1,14 @@
-[gd_scene load_steps=8 format=3 uid="uid://cd4583kr0prch"]
+[gd_scene load_steps=11 format=3 uid="uid://cd4583kr0prch"]
 
 [ext_resource type="Script" path="res://Scripts/card.gd" id="1_rgp2s"]
 [ext_resource type="Texture2D" uid="uid://crvh3v3mrhq7h" path="res://Images/Card2.png" id="3_tfk1s"]
 [ext_resource type="Texture2D" uid="uid://fq8t0fwjwla2" path="res://Images/card_highlight.png" id="4_xss7o"]
+[ext_resource type="PackedScene" uid="uid://cqnmi5d5yejy3" path="res://Scenes/Components/Drag&Drop/mouse_hover_component.tscn" id="5_8lmw6"]
 [ext_resource type="PackedScene" uid="uid://crkoay2hpo5ck" path="res://Scenes/Components/selectable_component.tscn" id="5_ikayd"]
-[ext_resource type="PackedScene" uid="uid://cqnmi5d5yejy3" path="res://Scenes/Components/mouse_hover_component.tscn" id="6_1k15p"]
-[ext_resource type="PackedScene" uid="uid://bp0lmcucywpj" path="res://Scenes/Components/draggable_component.tscn" id="6_ypiux"]
+[ext_resource type="PackedScene" uid="uid://bp0lmcucywpj" path="res://Scenes/Components/Drag&Drop/draggable_component.tscn" id="6_pr1iv"]
+[ext_resource type="PackedScene" uid="uid://b1sdxkop2nokr" path="res://Scenes/Components/Drag&Drop/drag_condition_component.tscn" id="7_rj8ps"]
+[ext_resource type="PackedScene" uid="uid://jy0sd4wj60ea" path="res://Scenes/Components/Drag&Drop/drop_component.tscn" id="8_wa5ym"]
+[ext_resource type="PackedScene" uid="uid://e165uiugoi0k" path="res://Scenes/Components/Drag&Drop/drop_condition_component.tscn" id="9_tb4ty"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vhjjl"]
 size = Vector2(144, 209)
@@ -62,12 +65,27 @@ highlight = NodePath("../HighlightSprite")
 mouse_hover_component = NodePath("../MouseHoverComponent")
 collision_object = NodePath("../DragArea2D")
 
-[node name="MouseHoverComponent" parent="." node_paths=PackedStringArray("collision_object") instance=ExtResource("6_1k15p")]
+[node name="MouseHoverComponent" parent="." node_paths=PackedStringArray("collision_object") instance=ExtResource("5_8lmw6")]
 collision_object = NodePath("../DragArea2D")
 should_scale_on_hover = true
 scale_ratio = 1.362
 
-[node name="DraggableComponent" parent="." node_paths=PackedStringArray("mouse_hover_component", "collision_object", "highlight") instance=ExtResource("6_ypiux")]
+[node name="DraggableComponent" parent="." node_paths=PackedStringArray("mouse_hover_component", "collision_object", "highlight", "drag_conditions") instance=ExtResource("6_pr1iv")]
 mouse_hover_component = NodePath("../MouseHoverComponent")
 collision_object = NodePath("../DragArea2D")
 highlight = NodePath("../HighlightSprite")
+drag_conditions = NodePath("DragConditionComponent")
+
+[node name="DragConditionComponent" parent="DraggableComponent" instance=ExtResource("7_rj8ps")]
+drag_type = 1
+can_be_played_on = 3
+
+[node name="DropComponent" parent="." instance=ExtResource("8_wa5ym")]
+
+[node name="CollisionShape2D" parent="DropComponent" index="0"]
+position = Vector2(-2, 0)
+
+[node name="DropConditionComponent" parent="DropComponent" instance=ExtResource("9_tb4ty")]
+drop_type = 2
+
+[editable path="DropComponent"]

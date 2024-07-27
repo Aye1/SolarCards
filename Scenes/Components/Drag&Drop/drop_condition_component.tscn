@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://e165uiugoi0k"]
+
+[ext_resource type="Script" path="res://Scripts/Components/Drag&Drop/drop_condition_component.gd" id="1_kw87v"]
+
+[node name="DropConditionComponent" type="Node"]
+script = ExtResource("1_kw87v")

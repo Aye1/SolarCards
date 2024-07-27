@@ -7,6 +7,7 @@ var desc_label
 var cost_label
 var highlight_sprite
 var draggable:DraggableComponent
+var drop_component:DropComponent
 var selectable:SelectableComponent
 
 const scale_up_vector = Vector2(1.1,1.1)
@@ -19,6 +20,7 @@ func _ready():
 	desc_label = $CardBackground/DescRichTextLabel
 	cost_label = $CardBackground/CostLabel
 	draggable = $DraggableComponent
+	drop_component = $DropComponent
 	selectable = $SelectableComponent
 	_update_ui()
 	
