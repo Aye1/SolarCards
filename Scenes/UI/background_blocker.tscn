@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://ctjgvsisd78rp"]
+
+[ext_resource type="Texture2D" uid="uid://balutknswb60y" path="res://Images/black_background_1920_1080.png" id="1_54c3c"]
+
+[node name="BackgroundBlocker" type="TextureRect"]
+modulate = Color(1, 1, 1, 0.490196)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 0
+texture = ExtResource("1_54c3c")

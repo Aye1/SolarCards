@@ -1,28 +1,35 @@
-[gd_scene load_steps=4 format=3 uid="uid://bjeitisee5wbb"]
+[gd_scene load_steps=3 format=3 uid="uid://bjeitisee5wbb"]
 
 [ext_resource type="Script" path="res://Scripts/deck.gd" id="1_6qnn1"]
 [ext_resource type="Texture2D" uid="uid://csotggrk50psr" path="res://Images/Card.png" id="2_7wkg8"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_0hc1u"]
-size = Vector2(243, 342)
-
-[node name="Deck" type="Node2D"]
+[node name="Deck" type="Control"]
+custom_minimum_size = Vector2(250, 350)
+layout_mode = 3
+anchors_preset = 0
+offset_right = 250.0
+offset_bottom = 350.0
 script = ExtResource("1_6qnn1")
 
-[node name="Area2D" type="Area2D" parent="."]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(-0.5, 0)
-shape = SubResource("RectangleShape2D_0hc1u")
-
-[node name="Sprite2D" type="Sprite2D" parent="Area2D"]
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 250.0
+offset_bottom = 350.0
 texture = ExtResource("2_7wkg8")
 
 [node name="CountLabel" type="Label" parent="."]
-offset_left = -46.0
-offset_top = -34.0
-offset_right = 41.0
-offset_bottom = 36.0
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -43.5
+offset_top = -35.0
+offset_right = 43.5
+offset_bottom = 35.0
+grow_horizontal = 2
+grow_vertical = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 51
 text = "999"

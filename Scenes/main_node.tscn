@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://cg5ldno0vqri0"]
+[gd_scene load_steps=16 format=3 uid="uid://cg5ldno0vqri0"]
 
 [ext_resource type="PackedScene" uid="uid://cnp5s0shgfmai" path="res://Scenes/background.tscn" id="1_3pxb0"]
 [ext_resource type="PackedScene" uid="uid://pqkvsp4c160p" path="res://Scenes/game_manager.tscn" id="1_hhkdq"]
@@ -10,7 +10,9 @@
 [ext_resource type="Script" path="res://Scripts/ui_manager.gd" id="5_cum62"]
 [ext_resource type="Script" path="res://Scripts/hand.gd" id="6_1iehq"]
 [ext_resource type="Texture2D" uid="uid://csotggrk50psr" path="res://Images/Card.png" id="6_64bjw"]
+[ext_resource type="PackedScene" uid="uid://bq7fmy2y25hi" path="res://Scenes/inspect_window.tscn" id="6_faywc"]
 [ext_resource type="PackedScene" uid="uid://bjeitisee5wbb" path="res://Scenes/deck.tscn" id="7_hm88m"]
+[ext_resource type="PackedScene" uid="uid://dxgjw3e71jcpc" path="res://Scenes/card_selector.tscn" id="7_pqn6q"]
 [ext_resource type="PackedScene" uid="uid://bcxd5yqg6ugt7" path="res://Scenes/location_board.tscn" id="8_6fajb"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4qefg"]
@@ -22,22 +24,24 @@ size = Vector2(1100, 246.5)
 
 [node name="DragManager" parent="Managers" instance=ExtResource("2_e043l")]
 
-[node name="GameManager" parent="Managers" node_paths=PackedStringArray("discard_pile", "play_zone", "drag_manager", "turn_manager", "action_deck", "location_deck", "hand", "location_board", "debug_button") instance=ExtResource("1_hhkdq")]
-discard_pile = NodePath("../../DiscardPile")
+[node name="GameManager" parent="Managers" node_paths=PackedStringArray("discard_pile", "play_zone", "drag_manager", "turn_manager", "ui_manager", "card_selector", "action_deck", "location_deck", "hand", "location_board", "debug_button") instance=ExtResource("1_hhkdq")]
+discard_pile = NodePath("../../Main UI/Board/DiscardPile")
 play_zone = NodePath("../../DropZone")
 drag_manager = NodePath("../DragManager")
 turn_manager = NodePath("../TurnManager")
-action_deck = NodePath("../../ActionDeck")
-location_deck = NodePath("../../LocationDeck")
+ui_manager = NodePath("../../Main UI")
+card_selector = NodePath("../../Front UI/CardSelector")
+action_deck = NodePath("../../Main UI/Board/ActionDeck")
+location_deck = NodePath("../../Main UI/Board/LocationDeck")
 hand = NodePath("../../Hand")
 location_board = NodePath("../../LocationBoard")
-debug_button = NodePath("../../UI/DebugDrawButton")
+debug_button = NodePath("../../Main UI/DebugDrawButton")
 
 [node name="TurnManager" parent="Managers" instance=ExtResource("3_8t888")]
 
 [node name="Background" parent="." instance=ExtResource("1_3pxb0")]
 
-[node name="UI" type="Control" parent="." node_paths=PackedStringArray("game_manager", "turn_manager", "turn_label", "turn_button")]
+[node name="Main UI" type="Control" parent="." node_paths=PackedStringArray("game_manager", "turn_manager", "turn_label", "turn_button", "inspect_window", "card_selector")]
 layout_mode = 3
 anchors_preset = 8
 anchor_left = 0.5
@@ -47,7 +51,7 @@ anchor_bottom = 0.5
 offset_left = -960.0
 offset_top = -540.0
 offset_right = 960.0
-offset_bottom = 350.0
+offset_bottom = 540.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 1
@@ -56,8 +60,55 @@ game_manager = NodePath("../Managers/GameManager")
 turn_manager = NodePath("../Managers/TurnManager")
 turn_label = NodePath("Turn Label")
 turn_button = NodePath("NextTurnButton")
+inspect_window = NodePath("../Front UI/InspectWindow")
+card_selector = NodePath("../Front UI/CardSelector")
 
-[node name="NextTurnButton" type="Button" parent="UI"]
+[node name="Board" type="Control" parent="Main UI"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="ActionDeck" parent="Main UI/Board" instance=ExtResource("7_hm88m")]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 20.0
+offset_top = -230.0
+offset_right = 270.0
+offset_bottom = 120.0
+grow_vertical = 0
+scale = Vector2(0.6, 0.6)
+
+[node name="LocationDeck" parent="Main UI/Board" instance=ExtResource("7_hm88m")]
+layout_mode = 1
+offset_left = 20.0
+offset_top = 20.0
+offset_right = 270.0
+offset_bottom = 370.0
+scale = Vector2(0.6, 0.6)
+
+[node name="DiscardPile" parent="Main UI/Board" instance=ExtResource("4_50tn1")]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -170.0
+offset_top = -230.0
+offset_right = 80.0
+offset_bottom = 120.0
+grow_horizontal = 0
+grow_vertical = 0
+scale = Vector2(0.6, 0.6)
+script = ExtResource("5_6q0u0")
+
+[node name="NextTurnButton" type="Button" parent="Main UI"]
 layout_mode = 0
 offset_left = 1525.0
 offset_top = 956.0
@@ -65,7 +116,7 @@ offset_right = 1655.0
 offset_bottom = 1023.0
 text = "Next turn"
 
-[node name="DebugDrawButton" type="Button" parent="UI"]
+[node name="DebugDrawButton" type="Button" parent="Main UI"]
 layout_mode = 0
 offset_left = 101.0
 offset_top = 724.0
@@ -73,7 +124,7 @@ offset_right = 219.0
 offset_bottom = 810.0
 text = "Draw Card"
 
-[node name="Turn Label" type="Label" parent="UI"]
+[node name="Turn Label" type="Label" parent="Main UI"]
 layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
@@ -95,12 +146,7 @@ position = Vector2(-442, 13)
 can_receive_drop = true
 
 [node name="CollisionShape2D" parent="DropZone" index="0"]
-position = Vector2(440.5, 31.5)
-
-[node name="DiscardPile" parent="." instance=ExtResource("4_50tn1")]
-position = Vector2(838, 388)
-scale = Vector2(0.6, 0.6)
-script = ExtResource("5_6q0u0")
+position = Vector2(368.5, 31.5)
 
 [node name="Hand" type="Area2D" parent="."]
 z_index = 2
@@ -127,15 +173,38 @@ theme_override_colors/font_color = Color(0, 0, 0, 1)
 text = "HAND"
 metadata/_edit_use_anchors_ = true
 
-[node name="ActionDeck" parent="." instance=ExtResource("7_hm88m")]
-position = Vector2(-798, 394)
-scale = Vector2(0.6, 0.6)
-
-[node name="LocationDeck" parent="." instance=ExtResource("7_hm88m")]
-position = Vector2(-843, -410)
-scale = Vector2(0.6, 0.6)
-
 [node name="LocationBoard" parent="." instance=ExtResource("8_6fajb")]
 position = Vector2(-333, -333)
+
+[node name="Front UI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -960.0
+offset_top = -540.0
+offset_right = 960.0
+offset_bottom = 540.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="InspectWindow" parent="Front UI" instance=ExtResource("6_faywc")]
+visible = false
+layout_mode = 1
+mouse_filter = 1
+
+[node name="CardSelector" parent="Front UI" instance=ExtResource("7_pqn6q")]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 0.0
+offset_top = 0.0
+offset_right = 0.0
+offset_bottom = 0.0
 
 [editable path="DropZone"]

@@ -2,13 +2,15 @@ extends Node
 class_name GameManager
 
 const card_template = preload("res://Scenes/card.tscn")
-const card_selector = preload("res://Scenes/card_selector.tscn")
+const card_selector_template = preload("res://Scenes/card_selector.tscn")
 
 var action_card_pool = []
 @export var discard_pile:DiscardPile
 @export var play_zone:DropComponent
 @export var drag_manager:DragManager
 @export var turn_manager:TurnManager
+@export var ui_manager:UiManager
+@export var card_selector:CardSelector
 @export var action_deck:Deck
 @export var location_deck:Deck
 @export var hand:Hand
@@ -42,7 +44,7 @@ func _connect_signals():
 	play_zone.draggable_dropped.connect(_on_card_dropped_on_play_zone.bind())
 	debug_button.pressed.connect(draw_card.bind("actions"))
 	turn_manager.turn_changed.connect(_on_new_turn)
-	#drag_manager.draggable_released.connect(_on_draggable_dropped.bind())
+	card_selector.selection_done.connect(_on_selection_finished)
 
 func _on_card_dropped_on_play_zone(draggable:Node, dropzone):
 	var card:Card = draggable.get_node("..") # TODO: that's not great
@@ -56,23 +58,17 @@ func _fill_decks():
 	location_deck.load_from_resource("res://Resources/Decks/deck_debug_location.tres")
 	
 func _init_game():
-	draw_cards(card_draw, "actions")
+	draw_cards_and_add_to_displayer(card_draw, "actions")
 	
 func _on_new_turn(turn):
 	empty_hand()
-	draw_cards(card_draw, "actions")
-
-#func _on_draggable_dropped(draggable):
-#	pass
-	#location_board.reorder_cards()
+	draw_cards_and_add_to_displayer(card_draw, "actions")
 	
-func create_card(model, board) -> Card:
+func create_card(model) -> Card:
 	var new_card = card_template.instantiate()
 	new_card.card_model = model
-	board.add_child(new_card)
 	drag_manager.register_draggable(new_card.draggable)
 	return new_card
-
 
 func play_card(card):
 	hand.remove_card(card)
@@ -83,37 +79,53 @@ func play_card(card):
 func play_character_card(card):
 	#TODO: implement
 	print("playing card")
+	ui_manager.display_inspect_window(card)
 	
 func _process_card_effect(effect):
 	match effect.type:
 		"draw":
-			draw_cards(int(effect.value), effect.target)
+			draw_cards_and_add_to_displayer(int(effect.value), effect.target)
 		"debug_print":
 			print(effect.value)
 		"discard":
-			start_discard_selection(int(effect.value), effect.target)
+			start_displayer_discard_selection(int(effect.value), effect.target)
 		"draw_discard":
-			draw_and_discard(int(effect.value), int(effect.value2), effect.target)
+			var cards = draw_cards(int(effect.value), effect.target)
+			start_discard_selection(int(effect.value2), cards, effect.target)
 		_:
 			printerr("Unknown card effect encountered " + effect.type)
-	
-func draw_cards(number, pile):
-	for i in range(int(number)):
-		draw_card(pile)
 
-func draw_card(pile):
+# Draws and returns several cards
+# Does NOT add the cards to the displayer
+# You need to do it yourself
+# Or use draw_cards_and_add_to_displayer
+func draw_cards(number:int, pile) -> Array[Card]:
+	var cards:Array[Card] = []
+	for i in range(int(number)):
+		cards.append(draw_card(pile))
+	return cards 
+
+# Draws and return a card
+# Does NOT add the card to the displayer
+# You need to do it yourself
+# Or use draw_cards_and_add_to_displayer
+func draw_card(pile) -> Card:
 	var deck = _get_deck(pile)
-	var target = _get_target_displayer(pile)
 	var card_model = deck.draw_card()
 	if card_model != null:
-		var new_card = create_card(card_model, target)
-		target.add_card(new_card)
-		
+		var new_card = create_card(card_model)
 		#TODO: this could be way cleaner
 		if pile == "location":
 			new_card.drop_component.can_receive_drop = true
 			new_card.drop_component.draggable_dropped.connect(_on_card_dropped_on_play_zone)
-		
+		return new_card
+	return null
+
+func draw_cards_and_add_to_displayer(number:int, pile):
+	var cards = draw_cards(number, pile)
+	var target = _get_target_displayer(pile)
+	target.add_cards(cards) 
+
 func empty_hand():
 	var discarded_cards = hand.clear()
 	discard_pile.discard_cards(discarded_cards)
@@ -131,48 +143,27 @@ func _get_deck(key):
 		return decks[key]
 	printerr("Trying to access unknown deck " + key)
 
-func _get_target_displayer(key):
+func _get_target_displayer(key) -> CardDisplayer:
 	if key in displayers:
 		return displayers[key]
 	printerr("Trying to access unknown displayer " + key)
-		
-func start_discard_selection(number:int, pile):
-	temp_selection_pile = pile
-	var selector = card_selector.instantiate()
-	var displayer = _get_target_displayer(pile) #TODO: selector should probably be a reused object
-	var cards = displayer.cards.duplicate()
-	displayer.clear()
-	selector.set_selectable_cards(cards)
-	selector.target_count = number
-	selector.selection_type = 0 # This is supposed to be an enum but Godot has some limitations
-	selector.selection_done.connect(_on_selection_finished)
-	add_child(selector)
-	temp_selector = selector
-	
-func _on_selection_finished(selected_cards, all_cards):
-	var displayer = _get_target_displayer(temp_selection_pile)
-	var cards = all_cards.duplicate()
+	return null
+
+# Starts a discard with a specific set of cards
+# Useful for discard cards just drawn for example
+func start_discard_selection(number:int, cards, pile):
+	ui_manager.display_card_selector(cards, number, pile, 0)
+
+# Starts a discard with all the cards from a specific displayer
+# Useful for simple discard
+func start_displayer_discard_selection(number:int, pile):
+	var displayer = _get_target_displayer(pile)
+	var cards = displayer.pop_all_cards()
+	ui_manager.display_card_selector(cards, number, pile, 0)
+
+func _on_selection_finished(selected_cards, remaining_cards, pile):
+	var displayer = _get_target_displayer(pile)
+	var cards = remaining_cards
 	for card in selected_cards:
-		cards.erase(card)
 		discard_pile.discard_card(card)
 	displayer.add_cards(cards)
-	temp_selector.queue_free()
-	
-# TODO: probably need to refactor this with the actual draw_card method
-func draw_and_discard(draw_number:int, discard_number:int, pile):
-	var cards = []
-	temp_selection_pile = pile
-	var deck = _get_deck(pile)
-	var target = _get_target_displayer(pile)
-	for i in range(0, draw_number):
-		var card_model = deck.draw_card()
-		if card_model != null:
-			var new_card = create_card(card_model, target)
-			cards.append(new_card)
-	var selector = card_selector.instantiate()
-	selector.set_selectable_cards(cards)
-	selector.target_count = discard_number
-	selector.selection_done.connect(_on_selection_finished)
-	add_child(selector)
-	temp_selector = selector
-	

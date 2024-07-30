@@ -1,28 +1,32 @@
 extends Control
 class_name CardSelector
 
-signal selection_done(selected_cards, all_cards)
+signal selection_done(selected_cards, remaining_cards, pile)
 
 enum CardSelectionType { DISCARD = 0 }
 
-var target_count:int = 10000
-var selection_type = CardSelectionType.DISCARD : set = _set_selection_type
+@export var accept_button:Button
+@export var prompt_label:Label
+@export var displayer:CardDisplayer
+
+var target_count:int = 10000 : set = _set_target_count
+var selection_type:CardSelectionType = CardSelectionType.DISCARD
 var selectable_cards = []
 var selected_cards = []
-
-var accept_button:Button
-var prompt_label:Label
-var displayer:CardDisplayer
+var card_pile
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	accept_button = $AcceptButton
-	displayer = $CardDisplayer
-	prompt_label = $Label
+	accept_button.pressed.connect(_on_accept_button_pressed)
+
+func setup(cards, target, pile, type = 0):
+	selectable_cards = cards
+	selection_type = type as CardSelectionType
+	target_count = target
+	card_pile = pile
 	displayer.add_cards(selectable_cards)
 	_connect_cards()
 	_update_prompt_label()
-	accept_button.pressed.connect(_on_accept_button_pressed)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -32,7 +36,6 @@ func _enable_button_if_possible():
 	accept_button.disabled = !_can_accept()
 	
 func _can_accept() -> bool:
-	# TODO: manage edge case when we have less selectable cards than the target
 	return selected_cards.size() == target_count
 	
 func _connect_cards() -> void:
@@ -64,15 +67,15 @@ func _update_selectability():
 		card.selectable.can_be_selected = !_can_accept()
 			
 func _on_accept_button_pressed():
-	_release_cards()
-	selection_done.emit(selected_cards, selectable_cards)
+	var selected = selected_cards.duplicate()
+	var remaining = []
+	for card in selectable_cards:
+		if card not in selected:
+			remaining.append(card)
+	selection_done.emit(selected, remaining, card_pile)
 
-func set_selectable_cards(cards):
-	selectable_cards = cards
-	
-func _set_selection_type(value):
-	selection_type = value
-	_update_prompt_label()
+func _set_target_count(value):
+	target_count = min(value, selectable_cards.size())
 	
 func _update_prompt_label():
 	if prompt_label == null:
@@ -82,4 +85,10 @@ func _update_prompt_label():
 		CardSelectionType.DISCARD:
 			new_text = "Choose " + str(target_count) + " card(s) to discard"
 	prompt_label.text = new_text
+	
+func clear():
+	_release_cards()
+	selectable_cards.clear()
+	selected_cards.clear()
+	displayer.clear()
 			

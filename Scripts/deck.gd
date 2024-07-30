@@ -1,4 +1,4 @@
-extends Node
+extends Control
 class_name Deck
 
 var count_label:Label

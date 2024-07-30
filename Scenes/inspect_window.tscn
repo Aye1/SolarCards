@@ -1,0 +1,94 @@
+[gd_scene load_steps=6 format=3 uid="uid://bq7fmy2y25hi"]
+
+[ext_resource type="PackedScene" uid="uid://ctjgvsisd78rp" path="res://Scenes/UI/background_blocker.tscn" id="1_a4xqx"]
+[ext_resource type="Texture2D" uid="uid://csotggrk50psr" path="res://Images/Card.png" id="1_wynp8"]
+[ext_resource type="Theme" uid="uid://dsedsigqync38" path="res://Themes/base_theme.tres" id="2_1d7i6"]
+[ext_resource type="Texture2D" uid="uid://c8e2o3qhinxne" path="res://Images/char_default.png" id="3_dq475"]
+[ext_resource type="Theme" uid="uid://ltgnusplfwvg" path="res://Themes/editor.tres" id="4_f5gbx"]
+
+[node name="InspectWindow" type="Control"]
+custom_minimum_size = Vector2(800, 600)
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="BackgroundBlocker" parent="." instance=ExtResource("1_a4xqx")]
+layout_mode = 0
+anchors_preset = 0
+
+[node name="NinePatchRect" type="NinePatchRect" parent="."]
+custom_minimum_size = Vector2(800, 600)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -400.0
+offset_top = -300.0
+offset_right = 400.0
+offset_bottom = 300.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("1_wynp8")
+region_rect = Rect2(0, 0, 248, 352)
+patch_margin_left = 16
+patch_margin_top = 16
+patch_margin_right = 16
+patch_margin_bottom = 16
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="NinePatchRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_1d7i6")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="NinePatchRect/MarginContainer"]
+layout_mode = 2
+
+[node name="Left VBoxContainer" type="VBoxContainer" parent="NinePatchRect/MarginContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="AvatarTextureRect" type="TextureRect" parent="NinePatchRect/MarginContainer/HBoxContainer/Left VBoxContainer"]
+layout_mode = 2
+texture = ExtResource("3_dq475")
+stretch_mode = 5
+
+[node name="NameLabel" type="Label" parent="NinePatchRect/MarginContainer/HBoxContainer/Left VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("2_1d7i6")
+text = "Name"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TitleLabel" type="Label" parent="NinePatchRect/MarginContainer/HBoxContainer/Left VBoxContainer"]
+layout_mode = 2
+text = "Title"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Right VBoxContainer" type="VBoxContainer" parent="NinePatchRect/MarginContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="NinePatchRect/MarginContainer/HBoxContainer/Right VBoxContainer"]
+custom_minimum_size = Vector2(200, 80)
+layout_mode = 2
+theme = ExtResource("2_1d7i6")
+text = "Dialog"
+
+[node name="Button" type="Button" parent="NinePatchRect/MarginContainer/HBoxContainer/Right VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("4_f5gbx")
+text = "Close"

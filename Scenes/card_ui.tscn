@@ -1,0 +1,109 @@
+[gd_scene load_steps=10 format=3 uid="uid://dp1s7ade5fnbh"]
+
+[ext_resource type="Script" path="res://Scripts/card_ui.gd" id="1_gotw0"]
+[ext_resource type="Texture2D" uid="uid://crvh3v3mrhq7h" path="res://Images/Card2.png" id="2_hi84j"]
+[ext_resource type="Texture2D" uid="uid://fq8t0fwjwla2" path="res://Images/card_highlight.png" id="3_8g4aq"]
+[ext_resource type="PackedScene" uid="uid://crkoay2hpo5ck" path="res://Scenes/Components/selectable_component.tscn" id="4_qeyg2"]
+[ext_resource type="PackedScene" uid="uid://cqnmi5d5yejy3" path="res://Scenes/Components/Drag&Drop/mouse_hover_component.tscn" id="5_nii6l"]
+[ext_resource type="PackedScene" uid="uid://bp0lmcucywpj" path="res://Scenes/Components/Drag&Drop/draggable_component.tscn" id="6_xf6tq"]
+[ext_resource type="PackedScene" uid="uid://b1sdxkop2nokr" path="res://Scenes/Components/Drag&Drop/drag_condition_component.tscn" id="7_p71pb"]
+[ext_resource type="PackedScene" uid="uid://jy0sd4wj60ea" path="res://Scenes/Components/Drag&Drop/drop_component.tscn" id="8_d1htp"]
+[ext_resource type="PackedScene" uid="uid://e165uiugoi0k" path="res://Scenes/Components/Drag&Drop/drop_condition_component.tscn" id="9_fu56o"]
+
+[node name="Card" type="Control" node_paths=PackedStringArray("name_label", "desc_label", "cost_label", "highlight_sprite", "draggable", "drop_component", "selectable")]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 300.0
+offset_bottom = 400.0
+script = ExtResource("1_gotw0")
+name_label = NodePath("CenterContainer/CardBackground2/NameLabel")
+desc_label = NodePath("CenterContainer/CardBackground2/DescRichTextLabel")
+cost_label = NodePath("CenterContainer/CardBackground2/CostLabel")
+highlight_sprite = NodePath("CenterContainer/HighlightSprite")
+draggable = NodePath("CenterContainer/DraggableComponent")
+drop_component = NodePath("CenterContainer/DropComponent")
+selectable = NodePath("CenterContainer/SelectableComponent")
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HighlightSprite" type="TextureRect" parent="CenterContainer"]
+visible = false
+custom_minimum_size = Vector2(300, 400)
+layout_mode = 2
+texture = ExtResource("3_8g4aq")
+stretch_mode = 5
+
+[node name="CardBackground2" type="TextureRect" parent="CenterContainer"]
+custom_minimum_size = Vector2(250, 350)
+layout_mode = 2
+texture = ExtResource("2_hi84j")
+stretch_mode = 5
+
+[node name="NameLabel" type="Label" parent="CenterContainer/CardBackground2"]
+offset_left = 19.0
+offset_top = 15.0
+offset_right = 178.0
+offset_bottom = 40.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "CARD NAME"
+vertical_alignment = 1
+
+[node name="DescRichTextLabel" type="RichTextLabel" parent="CenterContainer/CardBackground2"]
+offset_left = 13.0
+offset_top = 191.0
+offset_right = 236.0
+offset_bottom = 340.0
+mouse_filter = 2
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+text = "CARD DESCRIPTION"
+
+[node name="CostLabel" type="Label" parent="CenterContainer/CardBackground2"]
+offset_left = 188.0
+offset_top = 10.0
+offset_right = 214.0
+offset_bottom = 41.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 22
+text = "66"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="SelectableComponent" parent="CenterContainer" node_paths=PackedStringArray("highlight", "mouse_hover_component", "collision_object", "control") instance=ExtResource("4_qeyg2")]
+highlight = NodePath("../HighlightSprite")
+mouse_hover_component = NodePath("../MouseHoverComponent")
+collision_object = NodePath("")
+control = NodePath("../CardBackground2")
+can_be_selected = true
+
+[node name="MouseHoverComponent" parent="CenterContainer" node_paths=PackedStringArray("collision_object", "control") instance=ExtResource("5_nii6l")]
+collision_object = NodePath("")
+control = NodePath("../CardBackground2")
+should_scale_on_hover = true
+scale_ratio = 1.0
+
+[node name="DraggableComponent" parent="CenterContainer" node_paths=PackedStringArray("mouse_hover_component", "collision_object", "drag_conditions") instance=ExtResource("6_xf6tq")]
+visible = false
+mouse_hover_component = NodePath("../MouseHoverComponent")
+collision_object = NodePath("")
+drag_conditions = NodePath("DragConditionComponent")
+
+[node name="DragConditionComponent" parent="CenterContainer/DraggableComponent" instance=ExtResource("7_p71pb")]
+drag_type = 1
+can_be_played_on = 3
+
+[node name="DropComponent" parent="CenterContainer" instance=ExtResource("8_d1htp")]
+visible = false
+
+[node name="CollisionShape2D" parent="CenterContainer/DropComponent" index="0"]
+position = Vector2(125.25, 175.75)
+
+[node name="DropConditionComponent" parent="CenterContainer/DropComponent" instance=ExtResource("9_fu56o")]
+drop_type = 2
+
+[editable path="CenterContainer/DropComponent"]

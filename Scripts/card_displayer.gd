@@ -5,7 +5,7 @@ const card_width = Card.card_width
 const card_height = Card.card_height
 
 @export var lock_cards:bool = true
-var cards = []
+var cards:Array[Card]
 var shape:CollisionShape2D
 var rect:Rect2
 
@@ -26,7 +26,9 @@ func add_cards(new_cards) -> void:
 			if lock_cards:
 				card.draggable.can_be_dragged = false
 			cards.append(card)
-			if card.get_parent() != self:
+			if !card.get_parent():
+				add_child(card)
+			elif card.get_parent() != self:
 				card.get_parent().remove_child(card)
 				add_child(card)
 	reorder_cards()
@@ -35,11 +37,14 @@ func remove_card(card:Card) -> void:
 	if card in cards:
 		cards.erase(card)
 		reorder_cards()
-		
-func clear():
-	var discarded_cards = cards.duplicate()
+
+func pop_all_cards() -> Array[Card]:
+	var removed_cards = cards.duplicate()
 	cards.clear()
-	return discarded_cards
+	return removed_cards
+	
+func clear():
+	cards.clear()
 		
 func reorder_cards() -> void:
 	pass # Each child class must implement this

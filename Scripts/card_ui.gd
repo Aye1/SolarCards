@@ -1,11 +1,16 @@
-extends Node2D
-class_name Card
+### Does not work as is, do not use
+### Plan was to transform Cards to UI elements
+### To have simple layout management
+### But drag and drop doesn't work with UI currently
+
+extends Control
+class_name CardUI
 
 var card_model:CardResource : set = _set_card_model
 @export var name_label:Label
 @export var desc_label:RichTextLabel
 @export var cost_label:Label
-@export var highlight_sprite:Node2D
+@export var highlight_sprite:TextureRect
 @export var draggable:DraggableComponent
 @export var drop_component:DropComponent
 @export var selectable:SelectableComponent
@@ -23,7 +28,7 @@ func _update_ui():
 		name_label.text = card_model.title
 		desc_label.text = card_model.desc
 		cost_label.text = str(card_model.cost)
-
+	
 func _handle_hovered():
 	if is_hovered():
 		scale = scale_up_vector

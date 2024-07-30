@@ -13,9 +13,16 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vhjjl"]
 size = Vector2(144, 209)
 
-[node name="Card" type="Node2D"]
+[node name="Card" type="Node2D" node_paths=PackedStringArray("name_label", "desc_label", "cost_label", "highlight_sprite", "draggable", "drop_component", "selectable")]
 position = Vector2(-202, -203)
 script = ExtResource("1_rgp2s")
+name_label = NodePath("CardBackground/NameLabel")
+desc_label = NodePath("CardBackground/DescRichTextLabel")
+cost_label = NodePath("CardBackground/CostLabel")
+highlight_sprite = NodePath("HighlightSprite")
+draggable = NodePath("DraggableComponent")
+drop_component = NodePath("DropComponent")
+selectable = NodePath("SelectableComponent")
 
 [node name="DragArea2D" type="Area2D" parent="."]
 

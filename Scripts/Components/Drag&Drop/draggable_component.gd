@@ -1,4 +1,4 @@
-extends Node2D
+extends Node2D # Extend Node2D to access get_global_mouse_position()
 class_name DraggableComponent
 
 signal drag_started

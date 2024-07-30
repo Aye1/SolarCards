@@ -21,6 +21,8 @@ func discard_card(card:Card):
 	_update_label()
 
 func discard_cards(cards):
+	if !cards or cards.size() == 0:
+		return
 	for card in cards:
 		discard_card(card)
 
