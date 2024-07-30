@@ -77,17 +77,20 @@ collision_object = NodePath("../DragArea2D")
 should_scale_on_hover = true
 scale_ratio = 1.362
 
-[node name="DraggableComponent" parent="." node_paths=PackedStringArray("mouse_hover_component", "collision_object", "highlight", "drag_conditions") instance=ExtResource("6_pr1iv")]
+[node name="DraggableComponent" parent="." node_paths=PackedStringArray("mouse_hover_component", "collision_object", "highlight", "drag_conditions", "main_object") instance=ExtResource("6_pr1iv")]
 mouse_hover_component = NodePath("../MouseHoverComponent")
 collision_object = NodePath("../DragArea2D")
 highlight = NodePath("../HighlightSprite")
 drag_conditions = NodePath("DragConditionComponent")
+main_object = NodePath("..")
 
 [node name="DragConditionComponent" parent="DraggableComponent" instance=ExtResource("7_rj8ps")]
 drag_type = 1
 can_be_played_on = 3
 
-[node name="DropComponent" parent="." instance=ExtResource("8_wa5ym")]
+[node name="DropComponent" parent="." node_paths=PackedStringArray("drop_conditions", "main_object") instance=ExtResource("8_wa5ym")]
+drop_conditions = NodePath("DropConditionComponent")
+main_object = NodePath("..")
 
 [node name="CollisionShape2D" parent="DropComponent" index="0"]
 position = Vector2(-2, 0)

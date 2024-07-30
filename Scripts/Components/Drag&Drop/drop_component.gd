@@ -3,6 +3,7 @@ class_name DropComponent
 
 @export var drop_conditions:DropConditionComponent
 @export var can_receive_drop:bool = false
+@export var main_object:Node
 
 signal draggable_dropped(draggable, dropzone)
 

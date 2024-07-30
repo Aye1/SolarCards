@@ -3,10 +3,11 @@
 [ext_resource type="Script" path="res://Scripts/Components/Drag&Drop/drop_component.gd" id="1_w8ghs"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_311wk"]
-size = Vector2(146, 215)
+size = Vector2(1441, 211)
 
-[node name="DropComponent" type="Area2D"]
+[node name="DropComponent" type="Area2D" node_paths=PackedStringArray("main_object")]
 script = ExtResource("1_w8ghs")
+main_object = NodePath(".")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_311wk")

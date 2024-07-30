@@ -46,8 +46,8 @@ func _connect_signals():
 	turn_manager.turn_changed.connect(_on_new_turn)
 	card_selector.selection_done.connect(_on_selection_finished)
 
-func _on_card_dropped_on_play_zone(draggable:Node, dropzone):
-	var card:Card = draggable.get_node("..") # TODO: that's not great
+func _on_card_dropped_on_play_zone(draggable:DraggableComponent, dropzone):
+	var card:Card = draggable.main_object as Card
 	if dropzone == play_zone:
 		play_card(card)
 	else:

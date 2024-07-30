@@ -8,6 +8,7 @@ signal drag_stopped
 @export var collision_object:CollisionObject2D
 @export var highlight:Node2D
 @export var drag_conditions:DragConditionComponent
+@export var main_object:Node
 
 var is_dragged:bool = false
 var is_current_hover:bool = false : set = _set_is_current_hover
