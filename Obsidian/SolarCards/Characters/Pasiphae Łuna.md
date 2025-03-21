@@ -1,4 +1,5 @@
 - Name: Pasiphae Łuna
+- Pronouns: 
 - Title: High Priestess
 - Faction/Family: [[Łuna]]
 - Connections:

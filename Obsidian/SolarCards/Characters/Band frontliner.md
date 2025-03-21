@@ -1,4 +1,5 @@
 - Name:
-- Title: Empress
+- Pronouns:
+- Title: 
 - Faction/Family: [[The Band]]
 - Connections:

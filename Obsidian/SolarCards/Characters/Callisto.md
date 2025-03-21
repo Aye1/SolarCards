@@ -1,4 +1,5 @@
 - Name: Callisto
+- Pronouns: She/her
 - Title: Companion
 - Faction/Family: [[Soł]]
 - Connections:

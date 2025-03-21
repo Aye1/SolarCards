@@ -6,4 +6,4 @@ Investigations on [[The Resistance]], which tries to counter the new power in pl
 
 [[Act 3]]
 Understanding that the new power is the problem, and that [[Aurora Soł]] was framed
-Re-instigation of [[Aurora Soł]] at the head of the 
+Re-instigation of [[Aurora Soł]] at the head of the empire

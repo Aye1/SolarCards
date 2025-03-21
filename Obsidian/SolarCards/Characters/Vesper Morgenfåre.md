@@ -1,0 +1,5 @@
+- Name: Vesper Morgenfåre
+- Pronouns: They/them
+- Title: ?
+- Faction/Family: [[Morgenfåre]]
+- Connections: ?

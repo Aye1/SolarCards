@@ -14,7 +14,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Locations/Rising Sternflod.md",
+                "file": "Investigations/Act 1 - Inv 1 - The disparition of Vesper Morgenfåre.md",
                 "mode": "source",
                 "source": false
               }
@@ -23,23 +23,52 @@
         ]
       },
       {
-        "id": "d4ef84149db2a34a",
-        "type": "tabs",
+        "id": "ac2c70ae8f7c4854",
+        "type": "split",
         "dimension": 33.57664233576642,
         "children": [
           {
-            "id": "1e2f3991a82a7247",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Characters/Aurora Soł.md",
-                "mode": "source",
-                "source": false
+            "id": "d4ef84149db2a34a",
+            "type": "tabs",
+            "dimension": 65.75342465753424,
+            "children": [
+              {
+                "id": "1e2f3991a82a7247",
+                "type": "leaf",
+                "state": {
+                  "type": "markdown",
+                  "state": {
+                    "file": "Characters/Vesper Morgenfåre.md",
+                    "mode": "source",
+                    "source": false
+                  }
+                }
               }
-            }
+            ]
+          },
+          {
+            "id": "d61af4213065e2a4",
+            "type": "tabs",
+            "dimension": 34.24657534246575,
+            "children": [
+              {
+                "id": "40b77ac9ac757017",
+                "type": "leaf",
+                "pinned": true,
+                "state": {
+                  "type": "markdown",
+                  "state": {
+                    "file": "zDatabase/ASCII Special characters.md",
+                    "mode": "source",
+                    "source": false
+                  },
+                  "pinned": true
+                }
+              }
+            ]
           }
-        ]
+        ],
+        "direction": "horizontal"
       }
     ],
     "direction": "vertical"
@@ -105,7 +134,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Locations/Rising Sternflod.md",
+                "file": "Investigations/Act 1 - Inv 1 - The disparition of Vesper Morgenfåre.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -122,7 +151,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Locations/Rising Sternflod.md",
+                "file": "Investigations/Act 1 - Inv 1 - The disparition of Vesper Morgenfåre.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -145,7 +174,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Locations/Rising Sternflod.md"
+                "file": "Investigations/Act 1 - Inv 1 - The disparition of Vesper Morgenfåre.md"
               }
             }
           }
@@ -169,41 +198,41 @@
   },
   "active": "ed88ea85396f7145",
   "lastOpenFiles": [
-    "Locations/Falling Sternflod.md",
-    "Locations/Solinskap.md",
-    "Investigations/Test Investigation.md",
-    "Factions/The Resistance.md",
-    "Factions/The Police.md",
-    "Factions/The Band.md",
+    "Locations/Sternflod/Morgenfåre Lab.md",
+    "zDatabase/ASCII Special characters.md",
+    "Investigations/Act 1 - Inv 1 - The disparition of Vesper Morgenfåre.md",
+    "Endings/Become the Emperor·ress.md",
+    "Characters/Vesper Morgenfåre.md",
+    "Factions/Morgenfåre.md",
     "Factions/Soł.md",
     "Factions/Łuna.md",
-    "Endings/Become the Emperor·ress.md",
-    "Characters/Rhea Soł.md",
-    "Characters/Aurora Soł.md",
-    "Characters/Band frontliner.md",
-    "Characters/Callisto.md",
-    "Characters/Main Character.md",
-    "Characters/Pasiphae Łuna.md",
+    "Locations/Sternflod/Sternflod.md",
+    "Locations/Untitled",
+    "Locations/Sternflod/Rising Sternflod.md",
+    "Locations/Sternflod/Falling Sternflod.md",
+    "Locations/Sternflod",
+    "Lore/Eclipse.md",
     "Lore/Éos.md",
-    "Untitled.md",
-    "Lore",
-    "Locations/Rising Sternflod.md",
+    "Characters/Rhea Soł.md",
+    "Characters/Pasiphae Łuna.md",
+    "Characters/Main Character.md",
+    "Characters/Callisto.md",
+    "Characters/Band frontliner.md",
+    "Characters/Aurora Soł.md",
+    "zTemplates/Character.md",
+    "Mechanics/Aspects/Esoterism.md",
+    "Locations/Solinskap.md",
+    "Mechanics/Aspects/Influence.md",
+    "Mechanics/Aspects/Technology.md",
     "Story/Structure.md",
-    "Story/Act 2.md",
-    "Story/Act 3.md",
-    "Story/Act 1.md",
-    "Mechanics/Aspects/Earning Aspects Points.md",
+    "zDatabase/Names.md",
+    "Lore",
     "Story",
-    "Mechanics/Cards/Effects/Discard.md",
-    "Mechanics/Cards/Effects/Draw & Discard.md",
-    "Mechanics/Cards/Effects/Draw.md",
     "Endings",
     "Mechanics/Cards/Effects",
     "Mechanics/Cards",
     "zDatabase",
     "Mechanics/Aspects",
-    "zTemplates",
-    "Factions",
-    "Investigations"
+    "zTemplates"
   ]
 }

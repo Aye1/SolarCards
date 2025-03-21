@@ -1,4 +1,5 @@
 - Name: Rhea Soł
+- Pronouns: She/her
 - Title: Former Empress?
 - Faction/Family: [[Soł]]
 - Connections:

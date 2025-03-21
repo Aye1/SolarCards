@@ -1,4 +1,5 @@
 - Name: Aurora Soł
+- Pronouns: She/her
 - Title: Empress
 - Faction/Family: [[Soł]]
 - Connections:

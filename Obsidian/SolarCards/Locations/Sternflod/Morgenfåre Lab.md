@@ -1,0 +1,1 @@
+Not exactly a laboratory, at least not only. That's the headquarters of the [[Morgenfåre]] faction.

@@ -8,3 +8,11 @@
 - Malina
 - Ama / Amaterasu
 - Janus
+- Vesper
+- Orin
+- Althea
+- Lilith
+- Zosia
+- Peregrine
+- Fulk
+- Branwen

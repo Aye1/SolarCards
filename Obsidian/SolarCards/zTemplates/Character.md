@@ -1,4 +1,5 @@
 - Name:
+- Pronouns:
 - Title: 
 - Faction/Family:
 - Connections:
